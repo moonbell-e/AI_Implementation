@@ -35,15 +35,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""386e64d7-013a-4669-9a4b-17259d77ec57"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -57,17 +48,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3dcb7cd3-1b2c-4253-9459-0866211f7c17"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -77,7 +57,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         // MouseScroll
         m_MouseScroll = asset.FindActionMap("MouseScroll", throwIfNotFound: true);
         m_MouseScroll_Zoom = m_MouseScroll.FindAction("Zoom", throwIfNotFound: true);
-        m_MouseScroll_Newaction = m_MouseScroll.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -140,13 +119,11 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MouseScroll;
     private List<IMouseScrollActions> m_MouseScrollActionsCallbackInterfaces = new List<IMouseScrollActions>();
     private readonly InputAction m_MouseScroll_Zoom;
-    private readonly InputAction m_MouseScroll_Newaction;
     public struct MouseScrollActions
     {
         private @Inputs m_Wrapper;
         public MouseScrollActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Zoom => m_Wrapper.m_MouseScroll_Zoom;
-        public InputAction @Newaction => m_Wrapper.m_MouseScroll_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_MouseScroll; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -159,9 +136,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
         }
 
         private void UnregisterCallbacks(IMouseScrollActions instance)
@@ -169,9 +143,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
         }
 
         public void RemoveCallbacks(IMouseScrollActions instance)
@@ -192,6 +163,5 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     public interface IMouseScrollActions
     {
         void OnZoom(InputAction.CallbackContext context);
-        void OnNewaction(InputAction.CallbackContext context);
     }
 }
