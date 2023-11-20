@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HideMask
   - Water
   - UI
-  - 
-  - 
+  - ' ShowMask'
+  - ViewObstacle
   - 
   - 
   - 
