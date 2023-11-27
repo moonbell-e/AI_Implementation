@@ -8,14 +8,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - HideMask
+  - 
   - Water
   - UI
-  - ' ShowMask'
-  - ViewObstacle
-  - 
-  - 
-  - 
+  - FriendlyNPC
+  - EnemyNPC
+  - BreakableIO
+  - IO
+  - Loot
   - 
   - 
   - 
