@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - FriendlyNPC
+  - EnemyNPC
+  - BreakableIO
+  - IO
+  - Loot
   - 
   - 
   - 
