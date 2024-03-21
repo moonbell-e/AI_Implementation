@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 422732140}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2, y: 1.56, z: 2.2}
+  m_LocalPosition: {x: -0.18, y: 1.56, z: 2.33}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -730,9 +730,41 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: dc76fbd0-b212-4c74-9b6e-c692ca14512b
     m_ActionName: MouseScroll/Zoom[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cd1bdf2e-804e-46c8-a188-710f39d42a31
+    m_ActionName: Movement/Dash[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f727ac0e-e4c7-4d13-94c1-a9f82efeda31
+    m_ActionName: Movement/MoveHorizontal[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8cb4ae22-62fd-4c18-af65-82eeda45e6fa
+    m_ActionName: Movement/MoveVertical[/Keyboard/s,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e62babdd-114f-4fc5-a579-5faebe8e5bb7
+    m_ActionName: Movement/Run[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6280cb9d-e888-45a7-860a-ca97b64a7369
+    m_ActionName: Attack/Cone[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 067d6293-62cb-4293-9f33-0f636db3b8d6
+    m_ActionName: Attack/Special[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 97fb03df-3d3b-45e0-9ba1-6bab13c6f772
+    m_ActionName: Attack/AbilityQ[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e95b1e96-d575-45ad-8c9a-0cb96605b7f6
+    m_ActionName: Attack/AbilityF[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: MouseScroll
+  m_DefaultActionMap: Camera
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &963194230
