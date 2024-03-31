@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementConfig:
     _timeToReachTargetRotation: 0.15
-    _runningSpeed: 2
+    _runningSpeed: 3
     _runAnimationSpeedModifier: 1.29
     _dashForce: 20
     _dashDuration: 0.2

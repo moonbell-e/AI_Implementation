@@ -15,6 +15,7 @@ public class PlayerView : MonoBehaviour
         _playerConfig = playerConfig;
     }
 
+    public void TakeDamage() => _animator.SetTrigger("TakeDamage");
     public void StartIdling() => _animator.CrossFade(_animationsDataHash.IdleHash, 0.1f);
     public void StartRunning() => _animator.CrossFade(_animationsDataHash.RunHash, 0.1f);
     

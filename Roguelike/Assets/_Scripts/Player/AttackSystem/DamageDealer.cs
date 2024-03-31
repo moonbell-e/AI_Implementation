@@ -1,0 +1,52 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DamageDealer : MonoBehaviour
+{
+    private bool _canDealDamage;
+    private List<GameObject> _hasDealtDamage;
+
+    [SerializeField] private float _weaponLength;
+    [SerializeField] private float _weaponDamage;
+
+    private void Start()
+    {
+        _canDealDamage = false;
+        _hasDealtDamage = new List<GameObject>();
+    }
+
+    private void Update()
+    {
+        if (!_canDealDamage) return;
+
+        var layerMask = 1 << 7;
+
+        if (Physics.Raycast(transform.position, -transform.forward, out var hit, _weaponLength, layerMask))
+        {
+            if (hit.transform.TryGetComponent(out BaseEnemy enemy) && !_hasDealtDamage.Contains(hit.collider.gameObject))
+            {
+                enemy.TakeDamage(_weaponDamage);
+                _hasDealtDamage.Add(hit.transform.gameObject);
+            }
+        }
+    }
+
+    public void StartDealDamage()
+    {
+        _canDealDamage = true;
+        _hasDealtDamage.Clear();
+    }
+
+    public void EndDealDamage()
+    {
+        _canDealDamage = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        var weaponTransform = transform;
+        var position = weaponTransform.position;
+        Gizmos.DrawLine(position, position - weaponTransform.forward * _weaponLength);
+    }
+}

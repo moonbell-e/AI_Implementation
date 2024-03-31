@@ -40,6 +40,18 @@ public class Player : MonoBehaviour
         _trailRenderer.emitting = value;
     }
 
+    public void StartDealDamage()
+    {
+        var damageDealer = _knifeGo.GetComponentInChildren<DamageDealer>();
+        damageDealer.StartDealDamage();
+    }
+    
+    public void EndDealDamage()
+    {
+        var damageDealer = _knifeGo.GetComponentInChildren<DamageDealer>();
+        damageDealer.EndDealDamage();
+    }
+
     public void SetAttackMode(bool value)
     {
         _knifeGo.SetActive(value);
