@@ -6,8 +6,12 @@ public class DamageDealer : MonoBehaviour
     private bool _canDealDamage;
     private List<GameObject> _hasDealtDamage;
 
-    [SerializeField] private float _weaponLength;
-    [SerializeField] private float _weaponDamage;
+    [SerializeField] private int _weaponLength;
+    [SerializeField] private int _weaponDamage;
+    [SerializeField] private int _criticalDamageMultiplier = 2;
+    [SerializeField] private int _criticalDamageChance = 50;
+    [SerializeField] private DamagePopupGenerator _damagePopupGenerator;
+
 
     private void Start()
     {
@@ -23,9 +27,20 @@ public class DamageDealer : MonoBehaviour
 
         if (Physics.Raycast(transform.position, -transform.forward, out var hit, _weaponLength, layerMask))
         {
-            if (hit.transform.TryGetComponent(out BaseEnemy enemy) && !_hasDealtDamage.Contains(hit.collider.gameObject))
+            if (hit.transform.TryGetComponent(out BaseEnemy enemy) &&
+                !_hasDealtDamage.Contains(hit.collider.gameObject))
             {
-                enemy.TakeDamage(_weaponDamage);
+                int damage = _weaponDamage;
+                bool isCritical = Random.value <= _criticalDamageChance / 100f;
+
+                if (isCritical)
+                {
+                    damage *= _criticalDamageMultiplier;
+                }
+
+                enemy.TakeDamage(damage);
+                _damagePopupGenerator.Create(enemy.transform.position, damage,
+                    isCritical);
                 _hasDealtDamage.Add(hit.transform.gameObject);
             }
         }
