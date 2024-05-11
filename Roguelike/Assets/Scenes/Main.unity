@@ -2589,8 +2589,8 @@ MonoBehaviour:
   foamShadowsExpanded: 0
   intersectionEffectsExpanded: 0
   planarReflectionsExpanded: 0
-  reflectionStrength: 0.82
-  reflectionFresnel: 2.5
+  reflectionStrength: 0.61
+  reflectionFresnel: 2.66
   useColorGradient: 0
   colorGradient:
     serializedVersion: 2
@@ -2623,59 +2623,59 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0, g: 0.6313726, b: 1, a: 1}
-  deepColor: {r: 0, g: 0.42745084, b: 0.6784314, a: 1}
+  shallowColor: {r: 0, g: 0.4549611, b: 0.690566, a: 1}
+  deepColor: {r: 0.14740472, g: 0.5324241, b: 0.7584905, a: 1}
   colorDepth: 2.59
-  horizonColor: {r: 0, g: 0.22745085, b: 0.8, a: 1}
+  horizonColor: {r: 0.09598618, g: 0, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 0
   shoreColor: {r: 0, g: 0.98039216, b: 0.30196065, a: 0}
   shoreStrength: 0
   shoreBlend: 0
-  shoreDepth: 0
+  shoreDepth: 0.47
   waveColor: {r: 0, g: 0, b: 0, a: 0}
   underwaterColor: {r: 0.3294118, g: 0.4117647, b: 0.5764706, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
-  surfaceFoamSampling: {x: 0.62, y: 0}
-  surfaceFoamCutoff: 0.62
-  surfaceFoamDistortion: 0
-  surfaceFoamBlend: 1
-  surfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.3215686}
+  surfaceFoamSampling: {x: 0.393, y: 1.34}
+  surfaceFoamCutoff: 0.393
+  surfaceFoamDistortion: 1.34
+  surfaceFoamBlend: 0.546
+  surfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.34117648}
   surfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.7294118}
-  surfaceFoamMovement: {x: 0.7, y: 0, z: 0.47, w: 0.01}
+  surfaceFoamMovement: {x: 0.7, y: 0, z: 0.744, w: 0.1}
   surfaceFoamDirection1: 0.7
-  surfaceFoamDirection2: 0.47
+  surfaceFoamDirection2: 0.744
   surfaceFoamSpeed1: 0
-  surfaceFoamSpeed2: 0.01
-  surfaceFoamTilingAndOffset: {x: -1, y: -1, z: 0.57, w: 0.22}
+  surfaceFoamSpeed2: 0.1
+  surfaceFoamTilingAndOffset: {x: -1, y: -1, z: 0.78, w: 0.83}
   surfaceFoamOffsetX: -1
   surfaceFoamOffsetY: -1
-  surfaceFoamScale1: 0.57
-  surfaceFoamScale2: 0.22
+  surfaceFoamScale1: 0.78
+  surfaceFoamScale2: 0.83
   enableSurfaceFoam: 1
   surfaceFoamHeightMask: 0
   surfaceFoamHeightMaskSmoothness: 0
   enableHeightMask: 0
-  foamShadowStrength: 0.45
+  foamShadowStrength: 0.47
   foamShadowDepth: 10
-  surfaceFoamShadowProjection: 15
-  intersectionFoamShadowProjection: 4.6
-  foamMovement: 0
+  surfaceFoamShadowProjection: 10.63
+  intersectionFoamShadowProjection: 2.86
+  foamMovement: 1
   intersectionFoamDepth: 0.72
   intersectionFoamTexture: {fileID: 2800000, guid: 772031b03d9d46e4ab03e15c8e17718c, type: 3}
-  intersectionFoamColor: {r: 1, g: 1, b: 1, a: 1}
-  intersectionFoamMovement: {x: 0, y: 0}
-  intersectionFoamDirection: 0
-  intersectionFoamSpeed: 0
+  intersectionFoamColor: {r: 0, g: 0, b: 0, a: 1}
+  intersectionFoamMovement: {x: 1.71, y: 0.79}
+  intersectionFoamDirection: 1.71
+  intersectionFoamSpeed: 0.79
   intersectionFoamScale: 0.19
-  intersectionFoamSampling: {x: 1, y: 0}
-  intersectionFoamCutoff: 1
+  intersectionFoamSampling: {x: 1.57, y: 0}
+  intersectionFoamCutoff: 1.57
   intersectionFoamDistortion: 0
   enableIntersectionEffects: 1
   intersectionFoamBlend: 1
-  intersectionWaterBlend: 0
+  intersectionWaterBlend: 0.036
   shoreFoamSpeed: 0
   shoreFoamWidth: 0
   shoreFoamFrequency: 0
@@ -2687,14 +2687,14 @@ MonoBehaviour:
   lightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
   lightingHardness: 0
   normalsTexture: {fileID: 2800000, guid: a41da5f5671718b47bbc71e9ef691103, type: 3}
-  normalsMovement: {x: 0.04, y: 0.36}
+  normalsMovement: {x: -0.45, y: 0.36}
   normalsStrength: 0.29
   normalsScale: 0.36
-  normalsSpeed: 0.04
-  refractionStrength: 0.017
-  waveVisuals: {x: 0.055, y: 7.9, z: 1.38}
-  waveSteepness: 0.055
-  waveLength: 7.9
+  normalsSpeed: -0.45
+  refractionStrength: 0.8
+  waveVisuals: {x: 0.093, y: 6.4, z: 1.38}
+  waveSteepness: 0.093
+  waveLength: 6.4
   waveSpeed: 1.38
   waveDirections: {x: 0, y: 0.64, z: 1, w: 0.33}
   waveDirection1: 0
