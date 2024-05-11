@@ -10,8 +10,11 @@ public class GhostEnemy : BaseEnemy
     {
         if (_timePassed >= _attackCooldown)
         {
-            ShootAtPlayer();
-            _timePassed = 0;
+            if (Vector3.Distance(transform.position, _player.transform.position) <= _attackRange)
+            {
+                ShootAtPlayer();
+                _timePassed = 0;
+            }
         }
 
         _timePassed += Time.deltaTime;

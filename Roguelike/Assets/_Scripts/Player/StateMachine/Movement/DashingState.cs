@@ -22,9 +22,8 @@ public class DashingState : StaticState
     {
         _data.DashForce = _movementStateConfig.DashForce;
         _data.DashDuration = _movementStateConfig.DashDuration;
-        _data.DashCooldown = _movementStateConfig.DashCooldown;
-
         _dashTimer = _data.DashDuration;
+        
         _player.View.StartDashing();
         _player.SetDashMode(true);
     }
