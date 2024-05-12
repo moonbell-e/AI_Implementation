@@ -25,7 +25,7 @@ public class StaticState : IState
 
     public virtual void HandleInput()
     {
-        _data.InputDirection = _player.InputReader.InputDirection;
+        _data.InputDirection = _player.PlayerInputReader.InputDirection;
     }
 
     public virtual void Update()

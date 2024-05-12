@@ -5,8 +5,14 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private PlayerView _playerView;
+    [Header("Input Readers")]
+    [SerializeField] private InputReaderSwitcher _inputReaderSwitcher;
     [SerializeField] private PlayerInputReader _playerInputReader;
+    [SerializeField] private CookingInputReader _cookingInputReader;
+    [SerializeField] private InventoryInputReader _inventoryInputReader;
+
+    [Header("Other")]
+    [SerializeField] private PlayerView _playerView;
     [SerializeField] private PlayerConfig _playerConfig;
     [SerializeField] private GameObject _knifeGo;
     [SerializeField] private TrailRenderer _trailRenderer;
@@ -18,8 +24,11 @@ public class Player : MonoBehaviour
     public PlayerView View => _playerView;
     
     public PlayerConfig Config => _playerConfig;
-    
-    public PlayerInputReader InputReader => _playerInputReader;
+
+    public InputReaderSwitcher InputReaderSwitcher => _inputReaderSwitcher;
+    public PlayerInputReader PlayerInputReader => _playerInputReader;
+    public CookingInputReader CookingInputReader => _cookingInputReader;
+    public InventoryInputReader InventoryInputReader => _inventoryInputReader;
 
     private void Awake()
     {
@@ -29,7 +38,7 @@ public class Player : MonoBehaviour
         _trailRenderer.emitting = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         _stateMachine.HandleInput();
         _stateMachine.Update();

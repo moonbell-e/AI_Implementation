@@ -29,7 +29,7 @@ public class MovementState : IState
     }
 
     protected PlayerView View => _player.View;
-    protected PlayerInputReader InputReader => _player.InputReader;
+    protected PlayerInputReader InputReader => _player.PlayerInputReader;
     private Rigidbody Rb => _player.Rb;
 
     public virtual void Enter()
