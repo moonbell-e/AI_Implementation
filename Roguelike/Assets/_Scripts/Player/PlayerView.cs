@@ -8,11 +8,17 @@ public class PlayerView : MonoBehaviour
     private Animator _animator;
     private PlayerAnimationDataHash _animationsDataHash;
     
+    private List<int> _attackHashes = new List<int>();
+    
     public void Initialize(PlayerConfig playerConfig)
     {
         _animator = GetComponent<Animator>();
         _animationsDataHash = new PlayerAnimationDataHash();
         _playerConfig = playerConfig;
+        
+        _attackHashes.Add(_animationsDataHash.Attack1Hash);
+        _attackHashes.Add(_animationsDataHash.Attack2Hash);
+        _attackHashes.Add(_animationsDataHash.Attack3Hash);
     }
 
     public void TakeDamage() => _animator.SetTrigger("TakeDamage");
@@ -21,7 +27,7 @@ public class PlayerView : MonoBehaviour
     
     public void StartDashing() => _animator.CrossFade(_animationsDataHash.DashHash, 0f);
     
-    public void StartAttacking() => _animator.CrossFade(_animationsDataHash.AttackHash, 0.1f);
+    public void StartAttacking() => _animator.CrossFade(_attackHashes[Random.Range(0, _attackHashes.Count)], 0.1f);
     
     public void StartSpecialAttacking() => _animator.CrossFade(_animationsDataHash.SpecialAttackHash, 0.1f);
     

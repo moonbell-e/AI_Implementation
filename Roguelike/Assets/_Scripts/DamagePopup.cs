@@ -79,6 +79,6 @@ public class DamagePopup : MonoBehaviour
             _textMeshPro.fontSize = 10;
         }
 
-        _moveVector = new Vector3(.7f, 4f) * 3f;
+        _moveVector = new Vector3(.7f, 5f) * 3f;
     }
 }
