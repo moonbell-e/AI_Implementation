@@ -6,6 +6,14 @@ public class InputReaderSwitcher : MonoBehaviour
     [SerializeField] private List<BaseInputReader> _inputReaders = new();
     private BaseInputReader _activeInputReader;
 
+    private void Awake()
+    {
+        if (_inputReaders[0] is PlayerInputReader PlayerInputReader)
+        {
+            SetActiveInputReader(PlayerInputReader);
+        }
+    }
+
     public void SetActiveInputReader(BaseInputReader inputReader)
     {
         foreach (var reader in _inputReaders)

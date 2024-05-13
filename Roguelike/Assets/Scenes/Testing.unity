@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9199696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9199698}
+  - component: {fileID: 9199697}
+  m_Layer: 0
+  m_Name: InventoryInputReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &9199697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444fe1c1ddb92564b96e4fd90c87305c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: -944628639613478452, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  actionMapName: Inventory
+  _closeInventory: {fileID: -7726378567863638973, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+--- !u!4 &9199698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 31755789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &20807657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,6 +318,113 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &31755788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 31755789}
+  - component: {fileID: 31755790}
+  m_Layer: 0
+  m_Name: InputReaderSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &31755789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31755788}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 97639321}
+  - {fileID: 1162745228}
+  - {fileID: 9199698}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &31755790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31755788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429f2825efb843b44a75ab68270eeae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReaders:
+  - {fileID: 97639322}
+  - {fileID: 1162745229}
+  - {fileID: 9199697}
+--- !u!1 &97639320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97639321}
+  - component: {fileID: 97639322}
+  m_Layer: 0
+  m_Name: PlayerInputReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &97639321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97639320}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 31755789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97639322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97639320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f18a82b8e49abb4b8af8ebb6fb0dc67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: -944628639613478452, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  actionMapName: Movement
+  _dash: {fileID: -8138891103686561581, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _run: {fileID: 6069062740241818711, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _attack: {fileID: 8195474083849488300, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _specialAttack: {fileID: 1172048290484074112, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _spell: {fileID: -8003058256207843198, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _interact: {fileID: 4579959994589410560, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _cooking: {fileID: -1554777910580605741, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _inventory: {fileID: 329525760868813389, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _journal: {fileID: 2391140927538767180, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _esc: {fileID: 6949420633383407460, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
 --- !u!1 &193872986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1863,6 +2017,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1587150170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1162745227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1162745228}
+  - component: {fileID: 1162745229}
+  m_Layer: 0
+  m_Name: CookingInputReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1162745228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162745227}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 31755789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1162745229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162745227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04676cf4514e7b743b9eb7d0f757f6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: -944628639613478452, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  actionMapName: Cooking
+  _ingredient1: {fileID: 2037157684217321087, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _ingredient2: {fileID: 3993293366466404831, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _ingredient3: {fileID: -9196773046860825061, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _ingredient4: {fileID: 6315901065097071595, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _ingredient5: {fileID: -1671148043645889799, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
+  _ingredient6: {fileID: -688422385378188908, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
 --- !u!1 &1171292991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,56 +2597,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449033837}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1465532125
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1465532127}
-  - component: {fileID: 1465532126}
-  m_Layer: 0
-  m_Name: PlayerInputReader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1465532126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465532125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f18a82b8e49abb4b8af8ebb6fb0dc67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInput: {fileID: -944628639613478452, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
-  actionMapName: Movement
-  _dash: {fileID: -8138891103686561581, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
-  _run: {fileID: 6069062740241818711, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
-  _attack: {fileID: 8195474083849488300, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
-  _specialAttack: {fileID: 1172048290484074112, guid: d45e744acee0b3f499e8c555ee62f9a9, type: 3}
---- !u!4 &1465532127
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465532125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3488,7 +3644,19 @@ PrefabInstance:
     - target: {fileID: 4375897614011352649, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
       propertyPath: _playerInputReader
       value: 
-      objectReference: {fileID: 1465532126}
+      objectReference: {fileID: 97639322}
+    - target: {fileID: 4375897614011352649, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
+      propertyPath: _cookingInputReader
+      value: 
+      objectReference: {fileID: 1162745229}
+    - target: {fileID: 4375897614011352649, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
+      propertyPath: _inputReaderSwitcher
+      value: 
+      objectReference: {fileID: 31755790}
+    - target: {fileID: 4375897614011352649, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
+      propertyPath: _inventoryInputReader
+      value: 
+      objectReference: {fileID: 9199697}
     - target: {fileID: 6159615028339436862, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.6
@@ -3609,8 +3777,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1449033838}
+  - {fileID: 31755789}
   - {fileID: 1102720998}
-  - {fileID: 1465532127}
   - {fileID: 356078352}
   - {fileID: 1110151120}
   - {fileID: 987837139}

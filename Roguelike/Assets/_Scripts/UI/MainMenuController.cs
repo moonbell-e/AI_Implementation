@@ -477,7 +477,7 @@ public class MainMenuController : MonoBehaviour
 
         if (saveIndex == 0)
         {
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Vladislavania");
             BackToMenu();
         }
         if (saveIndex == 1)
@@ -487,12 +487,12 @@ public class MainMenuController : MonoBehaviour
         }
         if (saveIndex == 2)
         {
-            SceneManager.LoadScene("Testing");
+            SceneManager.LoadScene("Vladislavania");
             BackToMenu();
         }
         if (saveIndex == 3)
         {
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Vladislavania");
             BackToMenu();
         }
     }
