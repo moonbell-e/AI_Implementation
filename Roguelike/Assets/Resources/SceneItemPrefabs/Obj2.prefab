@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Obj2
   _id: 2
-  _isStackable: 0
+  _isStackable: 1
   _count: 0
   _description: "\u0441\u0444\u0435\u0440\u0430"
   _pathInventoryIcon: InventoryIcons/Obj2
