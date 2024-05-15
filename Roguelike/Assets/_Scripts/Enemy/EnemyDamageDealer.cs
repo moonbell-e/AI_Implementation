@@ -18,11 +18,13 @@ public class EnemyDamageDealer : MonoBehaviour
     private void Update()
     {
         if (!_canDealDamage || _hasDealtDamage) return;
-        var layerMask = 1 << 6;
+        var playerLayerMask = 1 << 6;
+        var enemyLayerMask = 1 << 7; 
+        var combinedLayerMask = playerLayerMask | enemyLayerMask; 
 
-        if (Physics.Raycast(transform.position, -transform.forward, out var hit, _weaponLength, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out var hit, _weaponLength, combinedLayerMask))
         {
-            if (hit.transform.TryGetComponent(out HealthSystem health))
+            if (hit.transform.TryGetComponent(out PlayerHealthSystem health))
             {
                 health.TakeDamage(_weaponDamage);
                 _hasDealtDamage = true;
@@ -30,6 +32,11 @@ public class EnemyDamageDealer : MonoBehaviour
             else if (hit.transform.TryGetComponent(out NonAggressiveEnemy enemy))
             {
                 enemy.TakeDamage(_weaponDamage);
+                _hasDealtDamage = true;
+            }
+            else if (hit.transform.TryGetComponent(out AggressiveEnemy aggressiveEnemy))
+            {
+                aggressiveEnemy.TakeDamage(_weaponDamage);
                 _hasDealtDamage = true;
             }
         }
@@ -51,6 +58,6 @@ public class EnemyDamageDealer : MonoBehaviour
         Gizmos.color = Color.red;
         var weaponTransform = transform;
         var position = weaponTransform.position;
-        Gizmos.DrawLine(position, position - weaponTransform.forward * _weaponLength);
+        Gizmos.DrawLine(position, position + weaponTransform.forward * _weaponLength);
     }
 }

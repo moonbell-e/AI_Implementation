@@ -28,20 +28,25 @@ public class DamageDealer : MonoBehaviour
 
         if (Physics.Raycast(transform.position, -transform.forward, out var hit, _weaponLength, layerMask))
         {
-            if (hit.transform.TryGetComponent(out AggressiveEnemy enemy) &&
-                !_hasDealtDamage.Contains(hit.collider.gameObject))
+            int damage = _weaponDamage;
+            bool isCritical = Random.value <= _criticalDamageChance / 100f;
+
+            if (isCritical)
             {
-                int damage = _weaponDamage;
-                bool isCritical = Random.value <= _criticalDamageChance / 100f;
+                damage *= _criticalDamageMultiplier;
+            }
 
-                if (isCritical)
-                {
-                    damage *= _criticalDamageMultiplier;
-                }
-
+            if (hit.transform.TryGetComponent(out AggressiveEnemy enemy) && !_hasDealtDamage.Contains(hit.collider.gameObject))
+            {
                 enemy.TakeDamage(damage);
-                _damagePopupGenerator.Create(enemy.transform.position, damage,
-                    isCritical);
+                _damagePopupGenerator.Create(enemy.transform.position, damage, isCritical);
+                _hasDealtDamage.Add(hit.transform.gameObject);
+            }
+
+            if (hit.transform.TryGetComponent(out NonAggressiveEnemy nonAggressiveEnemy) && !_hasDealtDamage.Contains(hit.collider.gameObject))
+            {
+                nonAggressiveEnemy.TakeDamage(damage);
+                _damagePopupGenerator.Create(nonAggressiveEnemy.transform.position, damage, isCritical);
                 _hasDealtDamage.Add(hit.transform.gameObject);
             }
         }

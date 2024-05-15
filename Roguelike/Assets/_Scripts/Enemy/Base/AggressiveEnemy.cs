@@ -10,8 +10,6 @@ public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
     public AggressiveEnemyAttackState AttackState { get; private set; }
 
     private Animator _animator;
-
-    public RobotTarget RobotTarget { get; private set; }
     public List<Transform> Targets { get; private set; }
 
     public NavMeshAgent NavMeshAgent { get; set; }

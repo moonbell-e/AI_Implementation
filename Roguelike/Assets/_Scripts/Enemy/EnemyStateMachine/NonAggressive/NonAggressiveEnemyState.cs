@@ -13,8 +13,8 @@ public class NonAggressiveEnemyState
         this.nonAggressiveEnemyStateMachine = nonAggressiveEnemyStateMachine;
     }
     
-    public void EnterState() {}
-    public void ExitState() {}
+    public virtual void EnterState() {}
+    public virtual void ExitState() {}
     public virtual void FrameUpdate() {}
     public void FixedUpdate() {}
 }
