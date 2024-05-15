@@ -7,6 +7,7 @@ public class EnemyDamageDealer : MonoBehaviour
 
     [SerializeField] private float _weaponLength;
     [SerializeField] private float _weaponDamage;
+    [SerializeField] private Vector3 _raycastDirection;
 
     private void Start()
     {
@@ -19,7 +20,7 @@ public class EnemyDamageDealer : MonoBehaviour
         if (!_canDealDamage || _hasDealtDamage) return;
         var layerMask = 1 << 6;
 
-        if (Physics.Raycast(transform.position, transform.forward, out var hit, _weaponLength, layerMask))
+        if (Physics.Raycast(transform.position, _raycastDirection, out var hit, _weaponLength, layerMask))
         {
             if (hit.transform.TryGetComponent(out HealthSystem health))
             {
@@ -45,6 +46,6 @@ public class EnemyDamageDealer : MonoBehaviour
         Gizmos.color = Color.red;
         var weaponTransform = transform;
         var position = weaponTransform.position;
-        Gizmos.DrawLine(position, position + weaponTransform.forward * _weaponLength);
+        Gizmos.DrawLine(position, position - _raycastDirection * _weaponLength);
     }
 }

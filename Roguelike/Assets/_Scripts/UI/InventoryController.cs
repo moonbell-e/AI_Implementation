@@ -32,7 +32,7 @@ public class InventoryController : MonoBehaviour
         items = new List<Item>();
         for (int i = 0; i < _inventoryContainer.transform.childCount; i++) 
         {
-            items.Add(new Item());
+            // items.Add(new Item());
         }
     }
 

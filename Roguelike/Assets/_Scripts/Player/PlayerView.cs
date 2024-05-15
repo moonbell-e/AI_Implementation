@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +19,7 @@ public class PlayerView : MonoBehaviour
         _attackHashes.Add(_animationsDataHash.Attack2Hash);
         _attackHashes.Add(_animationsDataHash.Attack3Hash);
     }
-
-    public void TakeDamage() => _animator.SetTrigger("TakeDamage");
+    
     public void StartIdling() => _animator.CrossFade(_animationsDataHash.IdleHash, 0.1f);
     public void StartRunning() => _animator.CrossFade(_animationsDataHash.RunHash, 0.1f);
     
