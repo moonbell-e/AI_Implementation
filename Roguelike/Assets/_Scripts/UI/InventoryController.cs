@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -83,9 +84,45 @@ public class InventoryController : MonoBehaviour
 
     private void ItemCollected(Item item)
     {
+        if (item._isStackable)
+        {
+            AddStackableItem(item);
+        }
+        else
+        {
+            AddUnstackableItem(item);
+        }
+    }
+
+    private void AddStackableItem(Item item)
+    {
         for (int i = 0; i < items.Count; ++i)
         {
-            if (items[i]._id == 0) 
+            if (items[i]._id == item._id)
+            {
+                items[i]._count += 1;
+                DisplayCount(i);
+                return;
+            }
+        }
+        for (int i = 0; i < items.Count; ++i)
+        {
+            if (items[i]._id == 0)
+            {
+                items[i] = item;
+                items[i]._count += 1;
+                DisplayItem(i);
+                DisplayCount(i);
+                break;
+            }
+        }
+    }
+
+    private void AddUnstackableItem(Item item)
+    {
+        for (int i = 0; i < items.Count; ++i)
+        {
+            if (items[i]._id == 0)
             {
                 items[i] = item;
                 DisplayItem(i);
@@ -101,6 +138,15 @@ public class InventoryController : MonoBehaviour
         Image image = icon.GetComponent<Image>();
         image.enabled = true;
         image.sprite = Resources.Load<Sprite>(items[i]._pathInventoryIcon);
+    }
+
+    private void DisplayCount(int i)
+    {
+        Transform cell = _inventoryContainer.transform.GetChild(i);
+        Transform text = cell.GetChild(5);
+        TMP_Text count = text.GetComponent<TMP_Text>();
+        count.enabled = true;
+        count.text = (items[i]._count.ToString());
     }
 
     private void ItemUsed(int id)
