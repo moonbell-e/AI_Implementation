@@ -35,7 +35,7 @@ public class InventoryController : MonoBehaviour
             // items.Add(new Item());
         }
     }
-
+    
     private void Update()
     {
         CookingMode();

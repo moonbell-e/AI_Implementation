@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Robot : Enemy
+public class Robot : AggressiveEnemy
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private RobotView _robotView;
+    [SerializeField] private GameObject _loot;
+    
+    public RobotView RobotView => _robotView;
+
+    protected override void Awake()
     {
+        base.Awake();
         
+        _robotView.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Die()
     {
-        
+        Instantiate(_loot, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+
+    public void StartDealDamage()
+    {
+        GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();
+    }
+
+    public void EndDealDamage()
+    {
+        GetComponentInChildren<EnemyDamageDealer>().EndDealDamage();
     }
 }

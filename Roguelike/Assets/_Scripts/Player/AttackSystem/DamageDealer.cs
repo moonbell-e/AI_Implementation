@@ -28,7 +28,7 @@ public class DamageDealer : MonoBehaviour
 
         if (Physics.Raycast(transform.position, -transform.forward, out var hit, _weaponLength, layerMask))
         {
-            if (hit.transform.TryGetComponent(out BaseEnemy enemy) &&
+            if (hit.transform.TryGetComponent(out AggressiveEnemy enemy) &&
                 !_hasDealtDamage.Contains(hit.collider.gameObject))
             {
                 int damage = _weaponDamage;

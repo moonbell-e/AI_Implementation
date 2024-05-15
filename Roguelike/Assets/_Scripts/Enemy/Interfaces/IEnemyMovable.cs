@@ -1,8 +1,6 @@
-using UnityEngine;
+using UnityEngine.AI;
 
 public interface IEnemyMovable
 {
-    Rigidbody RB { get; set; }
-
-    void MoveEnemy(Vector2 velocity);
+    NavMeshAgent NavMeshAgent  { get; set; }
 }

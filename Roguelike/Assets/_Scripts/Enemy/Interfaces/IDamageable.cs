@@ -1,6 +1,6 @@
 public interface IDamageable
 {
-    void Damage(float damageAmount);
+    void TakeDamage(float damageAmount);
 
     void Die();
 
