@@ -11,7 +11,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private ItemCollect _itemCollect;
     [SerializeField] private SpellSystem _spellSystem;
 
-    List<Item> items;
+    public List<Item> items;
 
     public GameObject _inventoryContainer;
     public Animator _inventoryAnimator;
@@ -24,7 +24,7 @@ public class InventoryController : MonoBehaviour
     protected ItemCollect ItemCollect => _itemCollect;
     protected SpellSystem SpellSystem => _spellSystem;
 
-    public Action<Item> OnItemUsed;
+    public Action<Item, int> OnItemUsed;
 
     int _usedItemsCount = 0;
 
@@ -153,38 +153,48 @@ public class InventoryController : MonoBehaviour
     {
         if (items[id]._id != 0)
         {
-            OnItemUsed.Invoke(items[id]);
-
-            Transform cell = _inventoryContainer.transform.GetChild(id);
-            Transform icon = cell.GetChild(2);
-            Image image = icon.GetComponent<Image>();
-
-            if (image.enabled)
-            {
-                image.enabled = false;
-                _usedItemsCount -= 1;
-            }
-            else
-            {
-                if (_usedItemsCount < 3)
-                {
-                    image.enabled = true;
-                    if (_usedItemsCount == 0)
-                    {
-                        icon = cell.GetChild(4);
-                        image = icon.GetComponent<Image>();
-                        image.enabled = true;
-                    }
-                    _usedItemsCount += 1;
-                }
-                else
-                {
-                    icon = cell.GetChild(3);
-                    image = icon.GetComponent<Image>();
-                    StartCoroutine(ItemDidntUseCoroutine(image));
-                }
-            }
+            OnItemUsed.Invoke(items[id], id);
         }
+    }
+
+    private void ItemAdd(int id)
+    {
+        Transform cell = _inventoryContainer.transform.GetChild(id);
+        Transform icon = cell.GetChild(2);
+        Image image = icon.GetComponent<Image>();
+        image.enabled = true;
+    }
+
+    private void ItemRemove(int id)
+    {
+        Transform cell = _inventoryContainer.transform.GetChild(id);
+        Transform icon = cell.GetChild(2);
+        Image image = icon.GetComponent<Image>();
+        image.enabled = false;
+    }
+
+    private void FirstItemAdd(int id)
+    {
+        Transform cell = _inventoryContainer.transform.GetChild(id);
+        Transform icon = cell.GetChild(4);
+        Image image = icon.GetComponent<Image>();
+        image.enabled = true;
+    }
+
+    private void FirstItemRemove(int id)
+    {
+        Transform cell = _inventoryContainer.transform.GetChild(id);
+        Transform icon = cell.GetChild(4);
+        Image image = icon.GetComponent<Image>();
+        image.enabled = false;
+    }
+
+    private void ItemFull(int id)
+    {
+        Transform cell = _inventoryContainer.transform.GetChild(id);
+        Transform icon = cell.GetChild(3);
+        Image image = icon.GetComponent<Image>();
+        StartCoroutine(ItemDidntUseCoroutine(image));
     }
 
     IEnumerator ItemDidntUseCoroutine(Image image)
@@ -214,16 +224,22 @@ public class InventoryController : MonoBehaviour
         PlayerInputReader.OnInventoryTriggered += InventoryOpen;
         PlayerInputReader.OnSpellTriggered += SpellUsed;
 
-        InventoryInputReader.OnCloseInventoryTriggered += InventoryOpen;
-
-        ItemCollect.OnItemCollected += ItemCollected;
-
         CookingInputReader.OnIngredient1Triggered += ItemUsed;
         CookingInputReader.OnIngredient2Triggered += ItemUsed;
         CookingInputReader.OnIngredient3Triggered += ItemUsed;
         CookingInputReader.OnIngredient4Triggered += ItemUsed;
         CookingInputReader.OnIngredient5Triggered += ItemUsed;
         CookingInputReader.OnIngredient6Triggered += ItemUsed;
+
+        InventoryInputReader.OnCloseInventoryTriggered += InventoryOpen;
+
+        ItemCollect.OnItemCollected += ItemCollected;
+
+        SpellSystem.OnItemAdded += ItemAdd;
+        SpellSystem.OnItemRemoved += ItemRemove;
+        SpellSystem.OnFirstItemAdded += FirstItemAdd;
+        SpellSystem.OnFirstItemRemoved += FirstItemRemove;
+        SpellSystem.OnFull += ItemFull;
     }
 
     private void OnDisable()
@@ -231,15 +247,21 @@ public class InventoryController : MonoBehaviour
         PlayerInputReader.OnInventoryTriggered -= InventoryOpen;
         PlayerInputReader.OnSpellTriggered -= SpellUsed;
 
-        InventoryInputReader.OnCloseInventoryTriggered -= InventoryOpen;
-
-        ItemCollect.OnItemCollected -= ItemCollected;
-
         CookingInputReader.OnIngredient1Triggered -= ItemUsed;
         CookingInputReader.OnIngredient2Triggered -= ItemUsed;
         CookingInputReader.OnIngredient3Triggered -= ItemUsed;
         CookingInputReader.OnIngredient4Triggered -= ItemUsed;
         CookingInputReader.OnIngredient5Triggered -= ItemUsed;
         CookingInputReader.OnIngredient6Triggered -= ItemUsed;
+
+        InventoryInputReader.OnCloseInventoryTriggered -= InventoryOpen;
+
+        ItemCollect.OnItemCollected -= ItemCollected;
+
+        SpellSystem.OnItemAdded -= ItemAdd;
+        SpellSystem.OnItemRemoved -= ItemRemove;
+        SpellSystem.OnFirstItemAdded -= FirstItemAdd;
+        SpellSystem.OnFirstItemRemoved -= FirstItemRemove;
+        SpellSystem.OnFull -= ItemFull;
     }
 }
