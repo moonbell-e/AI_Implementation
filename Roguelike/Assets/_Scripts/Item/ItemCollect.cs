@@ -6,6 +6,7 @@ using System;
 public class ItemCollect : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private InventoryController _inventoryController;
 
     protected PlayerInputReader PlayerInputReader => _player.PlayerInputReader;
 
@@ -19,7 +20,19 @@ public class ItemCollect : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent(out Item item))
             {
+                if (!item._isStackable) 
+                { 
+                    for (int i = 0; i < _inventoryController.items.Count; i++)
+                    {
+                        if (_inventoryController.items[i]._id == item._id)
+                        {
+                            return;
+                        }
+                    }
+                }
+
                 OnItemCollected.Invoke(item);
+
                 Destroy(other.gameObject);
                 _triggered = false;
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,7 +13,14 @@ public class SpellSystem : MonoBehaviour
 
     public GameObject _inventoryContainer;
 
+    public Action<int> OnItemAdded;
+    public Action<int> OnItemRemoved;
+    public Action<int> OnFirstItemAdded;
+    public Action<int> OnFirstItemRemoved;
+    public Action<int> OnFull;
+
     List<Item> usedItems;
+    List<int> usedItemsInventoryId;
 
     protected PlayerInputReader PlayerInputReader => _playerInputReader;
     protected InventoryController InventoryController => _inventoryController;
@@ -20,34 +28,48 @@ public class SpellSystem : MonoBehaviour
     private void Start()
     {
         usedItems = new List<Item>();
+        usedItemsInventoryId = new List<int>();
     }
 
-    private void AddItem(Item item)
+    private void UseItem(Item item, int id)
     {
-        bool remove = false;
         for (int i = 0; i < usedItems.Count; i++) 
         { 
             if (usedItems[i]._id == item._id) 
             {
-                remove = true;
+                _text.text = ("removed " + item._description);
+
+                OnItemRemoved.Invoke(id);
+                if (usedItems[0]._id == item._id)
+                {
+                    OnFirstItemRemoved.Invoke(id);
+                    if (usedItemsInventoryId.Count > 1)
+                    {
+                        OnFirstItemAdded.Invoke(usedItemsInventoryId[1]);
+                    }
+                }
+
+                usedItems.Remove(item);
+                usedItemsInventoryId.Remove(id);
+                return;
             }
         }
-        if (remove)
+        if (usedItems.Count < 3)
         {
-            _text.text = ("removed " + item._description);
-            usedItems.Remove(item);
+            _text.text = ("added " + item._description);
+            usedItems.Add(item);
+            usedItemsInventoryId.Add(id);
+
+            OnItemAdded.Invoke(id);
+            if (usedItems.Count == 1)
+            {
+                OnFirstItemAdded.Invoke(id);
+            }
         }
         else
         {
-            if (usedItems.Count < 3)
-            {
-                _text.text = ("added " + item._description);
-                usedItems.Add(item);
-            }
-            else
-            {
-                _text.text = ("full");
-            }
+            _text.text = ("full");
+            OnFull.Invoke(id);
         }
     }
 
@@ -59,18 +81,21 @@ public class SpellSystem : MonoBehaviour
             usedItems.RemoveAt(0);
             usedItems.RemoveAt(0);
             usedItems.RemoveAt(0);
+            usedItemsInventoryId.Remove(0);
+            usedItemsInventoryId.Remove(0);
+            usedItemsInventoryId.Remove(0);
         }
     }
 
     private void OnEnable()
     {
-        InventoryController.OnItemUsed += AddItem;
+        InventoryController.OnItemUsed += UseItem;
         PlayerInputReader.OnSpellTriggered += SpellCast;
     }
 
     private void OnDisable()
     {
-        InventoryController.OnItemUsed -= AddItem;
+        InventoryController.OnItemUsed -= UseItem;
         PlayerInputReader.OnSpellTriggered -= SpellCast;
     }
 }
