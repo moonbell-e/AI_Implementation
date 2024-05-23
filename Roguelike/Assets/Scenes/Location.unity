@@ -1428,7 +1428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3541754002163558908, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3609869344792266581, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3758,6 +3758,7 @@ MonoBehaviour:
   _player: {fileID: 2717683589591415244}
   _itemCollect: {fileID: 8158367451638495504}
   _spellSystem: {fileID: 226567976}
+  items: []
   _inventoryContainer: {fileID: 490283383}
   _inventoryAnimator: {fileID: 490283385}
   _inventoryButtonNamesAnimator: {fileID: 490283385}
@@ -6379,6 +6380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2717683589591415244}
+  _inventoryController: {fileID: 0}
 --- !u!135 &8158367451638495505
 SphereCollider:
   m_ObjectHideFlags: 0

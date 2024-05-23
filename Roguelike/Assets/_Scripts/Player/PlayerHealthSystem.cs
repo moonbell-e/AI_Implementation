@@ -27,6 +27,16 @@ public class PlayerHealthSystem : MonoBehaviour
       }
    }
 
+    public void TakeHeal(float healAmount)
+    {
+        _health += healAmount;
+        if (_health >= _maxHealth) 
+        {
+            _health = _maxHealth;
+        }
+        _slider.value = _health;
+    }
+
    private void Die()
    {
       Destroy(gameObject);

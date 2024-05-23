@@ -19,6 +19,8 @@ public class SpellSystem : MonoBehaviour
     public Action<int> OnFirstItemRemoved;
     public Action<int> OnFull;
 
+    public Action<int, int, int> OnSpellCasted;
+
     List<Item> usedItems;
     List<int> usedItemsInventoryId;
 
@@ -78,6 +80,7 @@ public class SpellSystem : MonoBehaviour
         if (usedItems.Count == 3)
         {
             _text.text = (usedItems[0]._activeSkillDescription + " " + usedItems[1]._passiveSkillDescription + " " + usedItems[2]._passiveSkillDescription);
+            OnSpellCasted.Invoke(usedItems[0]._id - 1, usedItems[1]._id - 1, usedItems[2]._id - 1);
             usedItems.RemoveAt(0);
             usedItems.RemoveAt(0);
             usedItems.RemoveAt(0);

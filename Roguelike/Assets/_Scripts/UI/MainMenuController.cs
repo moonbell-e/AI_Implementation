@@ -482,12 +482,12 @@ public class MainMenuController : MonoBehaviour
         }
         if (saveIndex == 1)
         {
-            SceneManager.LoadScene("Vladislavania");
+            SceneManager.LoadScene("Aigerimia");
             BackToMenu();
         }
         if (saveIndex == 2)
         {
-            SceneManager.LoadScene("Vladislavania");
+            SceneManager.LoadScene("Location");
             BackToMenu();
         }
         if (saveIndex == 3)

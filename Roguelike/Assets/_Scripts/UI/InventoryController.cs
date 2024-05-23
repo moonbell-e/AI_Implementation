@@ -26,8 +26,6 @@ public class InventoryController : MonoBehaviour
 
     public Action<Item, int> OnItemUsed;
 
-    int _usedItemsCount = 0;
-
     private void Start()
     {
         items = new List<Item>();
@@ -216,7 +214,6 @@ public class InventoryController : MonoBehaviour
             image = icon.GetComponent<Image>();
             image.enabled = false;
         }
-        _usedItemsCount = 0;
     }
 
     private void OnEnable()
