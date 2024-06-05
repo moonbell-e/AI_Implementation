@@ -12,6 +12,4 @@ public class Item : MonoBehaviour
     public string _description;
     public string _pathInventoryIcon;
     public string _pathSceneItem;
-    public string _activeSkillDescription;
-    public string _passiveSkillDescription;
 }

@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponLength: 1.22
   _weaponDamage: 1
+  _raycastDirection: {x: 0, y: 0, z: 0}
 --- !u!1001 &6017217751969304411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -848,6 +849,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ab17ad196a45fd498854ffd74f8d865, type: 3}
       insertIndex: -1
       addedObject: {fileID: 496084599567406879}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ab17ad196a45fd498854ffd74f8d865, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9187872744233693210}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ab17ad196a45fd498854ffd74f8d865, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4320715297044278261}
   m_SourcePrefab: {fileID: 100100000, guid: 8ab17ad196a45fd498854ffd74f8d865, type: 3}
 --- !u!4 &4431288150055534709 stripped
 Transform:
@@ -947,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62e048a509534e42b0a7d099fabfb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 3
+  _health: 30
   _attackCooldown: 2
   _attackRange: 2
   _aggroRange: 4
@@ -973,6 +980,34 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &9187872744233693210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863514951290663434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e767496170908418d83dfabc8505f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusAbilityStorage: {fileID: 4320715297044278261}
+--- !u!114 &4320715297044278261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863514951290663434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac9258cf0193264e9cb17e72865c94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusAbilityConfig:
+  - {fileID: 11400000, guid: 4a7b2705182a70642b0fe7553cd0f2d1, type: 2}
+  _enemyObject: {fileID: 7161893690398714347}
 --- !u!1001 &6664890060033267775
 PrefabInstance:
   m_ObjectHideFlags: 0

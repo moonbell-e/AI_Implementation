@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa53e6fd61fd2044b58d6448e4f8281, type: 3}
+  m_Name: CarrotConfig
+  m_EditorClassIdentifier: 
+  <CooldownPoints>k__BackingField: 0
+  <ActionTime>k__BackingField: 2
+  <SpeedCount>k__BackingField: 15
+  <DamegeCount>k__BackingField: 10
+  <CarrotSceneSpellPrefab>k__BackingField: {fileID: 5325009229241687235, guid: 5abc57b8d0f72f4498966857d2193f02, type: 3}
