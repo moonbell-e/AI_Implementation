@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class Sensor : MonoBehaviour
 {
+    [SerializeField] private SensorTypes _sensorType;
     [SerializeField] private float _detectionRadius = 5f;
     [SerializeField] private float _timerInterval = 1f;
 
@@ -56,13 +57,41 @@ public class Sensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent(out PotentialAttacker _)) return;
+        switch (_sensorType)
+        {
+            case SensorTypes.None:
+                break;
+            case SensorTypes.Robot:
+                if (!other.TryGetComponent(out RobotTarget _)) return;
+                break;
+            case SensorTypes.Predator:
+                if (!other.TryGetComponent(out PredatorTarget _)) return;
+                break;
+            case SensorTypes.Herbal:
+                if (!other.TryGetComponent(out PotentialAttacker _)) return;
+                break;
+        }
+
         UpdateTargetPosition(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.TryGetComponent(out PotentialAttacker _)) return;
+        switch (_sensorType)
+        {
+            case SensorTypes.None:
+                break;
+            case SensorTypes.Robot:
+                if (!other.TryGetComponent(out RobotTarget _)) return;
+                break;
+            case SensorTypes.Predator:
+                if (!other.TryGetComponent(out PredatorTarget _)) return;
+                break;
+            case SensorTypes.Herbal:
+                if (!other.TryGetComponent(out PotentialAttacker _)) return;
+                break;
+        }
+        
         UpdateTargetPosition();
     }
 
@@ -72,4 +101,12 @@ public class Sensor : MonoBehaviour
         Gizmos.color = IsTargetInRange ? Color.red : Color.green;
         Gizmos.DrawWireSphere(transform.position, _detectionRadius);
     }
+}
+
+public enum SensorTypes
+{
+    None,
+    Robot,
+    Predator,
+    Herbal
 }

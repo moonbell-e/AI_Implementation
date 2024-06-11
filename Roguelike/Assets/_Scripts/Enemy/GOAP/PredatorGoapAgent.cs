@@ -28,7 +28,7 @@ public class PredatorGoapAgent : BaseGoapAgent
             .AddEffect(beliefs["PlayerInAttackRange"])
             .Build());
         
-        actions.Add(new AgentAction.Builder("AttackTarget")
+        actions.Add(new AgentAction.Builder("PredatorTarget")
             .WithStrategy(new AttackStrategy(animationController))
             .AddPrecondition(beliefs["PlayerInAttackRange"])
             .AddEffect(beliefs["AttackingPlayer"])

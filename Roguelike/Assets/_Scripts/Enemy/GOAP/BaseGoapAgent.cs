@@ -42,7 +42,7 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
     public bool _isDefending;
     public bool _isAttacked;
 
-    [SerializeField] private GoapFactory _gFactory;
+    [Inject] private GoapFactory _gFactory;
     private IGoapPlanner _gPlanner;
 
     void Awake()
@@ -52,6 +52,7 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
 
+        _gFactory = FindObjectOfType<GoapFactory>();
         _gPlanner = _gFactory.CreatePlanner();
 
         CurrentHealth = MaxHealth;
@@ -63,6 +64,38 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
         SetupBeliefs();
         SetupActions();
         SetupGoals();
+    }
+
+    public void SetNeededPositions(Transform restingPosition, Transform foodPosition)
+    {
+        _restingPosition = restingPosition;
+        _foodPosition = foodPosition;
+    }
+    
+    public void TakeDamage(float damageAmount)
+    {
+        _isAttacked = true;
+        CurrentHealth -= damageAmount;
+
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void StartDealDamage()
+    {
+        _enemyDamageDealer.StartDealDamage();
+    }
+
+    public void EndDealDamage()
+    {
+        _enemyDamageDealer.EndDealDamage();
     }
 
     protected virtual void SetupBeliefs()
@@ -261,31 +294,5 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
         {
             actionPlan = potentialPlan;
         }
-    }
-
-    public void TakeDamage(float damageAmount)
-    {
-        _isAttacked = true;
-        CurrentHealth -= damageAmount;
-
-        if (CurrentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
-
-    public void StartDealDamage()
-    {
-        _enemyDamageDealer.StartDealDamage();
-    }
-
-    public void EndDealDamage()
-    {
-        _enemyDamageDealer.EndDealDamage();
     }
 }
