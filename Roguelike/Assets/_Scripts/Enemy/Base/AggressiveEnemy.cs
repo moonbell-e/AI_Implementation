@@ -23,10 +23,7 @@ public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
     {
         NavMeshAgent = GetComponent<NavMeshAgent>();
         Targets = new List<Transform>();
-        foreach (var target in FindObjectsOfType<RobotTarget>())
-        {
-            Targets.Add(target.transform);
-        }
+
         
         _animator = GetComponent<Animator>();
 
@@ -41,6 +38,11 @@ public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
     {
         CurrentHealth = MaxHealth;
         StateMachine.Initialize(IdleState);
+        
+        foreach (var target in FindObjectsOfType<RobotTarget>())
+        {
+            Targets.Add(target.transform);
+        }
     }
 
     private void Update()

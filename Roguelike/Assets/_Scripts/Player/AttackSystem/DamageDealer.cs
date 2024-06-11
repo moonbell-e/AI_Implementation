@@ -49,6 +49,13 @@ public class DamageDealer : MonoBehaviour
                 _damagePopupGenerator.Create(nonAggressiveEnemy.transform.position, damage, isCritical);
                 _hasDealtDamage.Add(hit.transform.gameObject);
             }
+            
+            if (hit.transform.TryGetComponent(out BaseGoapAgent goapAgent) && !_hasDealtDamage.Contains(hit.collider.gameObject))
+            {
+                goapAgent.TakeDamage(damage);
+                _damagePopupGenerator.Create(goapAgent.transform.position, damage, isCritical);
+                _hasDealtDamage.Add(hit.transform.gameObject);
+            }
         }
     }
 
