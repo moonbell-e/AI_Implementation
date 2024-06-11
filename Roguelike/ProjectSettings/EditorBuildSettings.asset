@@ -9,12 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 829a86ba161cdd840842063447f41aab
   - enabled: 1
+    path: Assets/Scenes/HubLocation.unity
+    guid: fec00dbde6c7d2342809102c59cb1f2e
+  - enabled: 1
+    path: Assets/Scenes/Location1.unity
+    guid: 4eb120e5a65023b4e9c410b7f84e96bf
+  - enabled: 1
+    path: Assets/Scenes/Location.unity
+    guid: afae1e581418f0240b0e0a9a482d7ad8
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 9c63f33617853404eb84883617221486
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Aigerimia.unity
     guid: 79745a30871c41b40847d0238cfadeda
-  - enabled: 1
-    path: Assets/Scenes/Vladislavania.unity
-    guid: 4eb120e5a65023b4e9c410b7f84e96bf
   m_configObjects: {}

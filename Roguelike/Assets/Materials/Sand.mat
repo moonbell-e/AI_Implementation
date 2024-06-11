@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sand
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 69aa53f941081994ab1422a613b1ca47, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -30,8 +30,7 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -77,6 +76,54 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ParallaxMapping_0981abaf0eaf4d01ae0326c1ae89bb81_Heightmap_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 22ebeb4925ef7fa4684003950545588c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMapping_268ed5a71dec403bbda48c5002cb5fce_Heightmap_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 61c5d06930b0f6e45a3eb4904bb51cfa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMapping_45dc079f44a445638518a40410c86b39_Heightmap_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 985f71301fb5e8e49944db0d567abebc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMapping_649d188619834c488c4347e36080a898_Heightmap_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 4c64a8a438abe7c4da1675acd85ebffb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_1125e8448e6f4623b94322bccd419f87_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 762c0e21c9c23184e94d8caf05cd15e0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_4d52eae4b57b4991ad8edee3c068d6af_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ee01592dcc65f8c40a594d942726aa49, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_5a10f3680090444baacef77f2a2ab703_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 9b2771d198f2d9841bef4d723b8c6d02, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_5cac7119baca4bc29b1f4931e258c6e1_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2e8b588ffeee8104e8e2c1d4db8aeb7b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_7e24889d497a4a468973db7d732acd6b_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6e74b04d38155dc48a35a7c12c9d8b95, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_b41699c161bc4cb583a75da4ed243d9c_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: b6440dbe1a9554446b648fdb9b57f202, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_d828fb643ff8408ea43f509da922f0d2_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c69b6aa5f43cf1e42b0783b200d4ec1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_f401ebe0071c49afb6ef30bc195dbdbc_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ce09c147d7a9f6e4caa47eb277286d4c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -112,11 +159,18 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Grass_RockMax: 100
+    - _Grass_RockMin: 100
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SandInMax: 4.08
+    - _SandInMin: 0
+    - _Sand_GrassMax: 100
+    - _Sand_GrassMin: 10
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -130,4 +184,5 @@ Material:
     - _Color: {r: 0.83396226, g: 0.68446547, b: 0.44530433, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Tiling: {r: 120, g: 120, b: 0, a: 0}
   m_BuildTextureStacks: []

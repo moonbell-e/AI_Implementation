@@ -10,6 +10,9 @@ using UnityEngine.Rendering.Universal;
 
 public class MainMenuController : MonoBehaviour
 {
+    [Header("Managers")]
+    [SerializeField] private SaveLoadManager _saveLoadManager = null;
+
     [Header("Master Volume Slider")]
     [SerializeField] private TMP_Text _masterVolumeTextValue = null;
     [SerializeField] private Slider _masterVolumeSlider = null;
@@ -475,26 +478,23 @@ public class MainMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        if (saveIndex == 0)
+        PlayerPrefs.SetInt("currenntSave", saveIndex);
+
+        int? i = _saveLoadManager.CheckSaveStatus(saveIndex);
+        if (i == null)
         {
-            SceneManager.LoadScene("Vladislavania");
-            BackToMenu();
+            _saveLoadManager.InitiateSave(saveIndex);
+            SceneManager.LoadScene("HubLocation");
         }
-        if (saveIndex == 1)
+        else if (i == 0)
         {
-            SceneManager.LoadScene("Vladislavania");
-            BackToMenu();
+            SceneManager.LoadScene("HubLocation");
         }
-        if (saveIndex == 2)
+        else if (i == 1)
         {
-            SceneManager.LoadScene("Vladislavania");
-            BackToMenu();
+            SceneManager.LoadScene("Location1");
         }
-        if (saveIndex == 3)
-        {
-            SceneManager.LoadScene("Vladislavania");
-            BackToMenu();
-        }
+        BackToMenu();
     }
 
     public void SaveLoader(int saveIndex)

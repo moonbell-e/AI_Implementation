@@ -9,7 +9,7 @@ public class InventoryController : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private ItemCollect _itemCollect;
-    [SerializeField] private SpellSystem _spellSystem;
+    [SerializeField] private SpellManager _spellSystem;
 
     public List<Item> items;
 
@@ -22,11 +22,9 @@ public class InventoryController : MonoBehaviour
     protected CookingInputReader CookingInputReader => _player.CookingInputReader;
     protected InventoryInputReader InventoryInputReader => _player.InventoryInputReader;
     protected ItemCollect ItemCollect => _itemCollect;
-    protected SpellSystem SpellSystem => _spellSystem;
+    protected SpellManager SpellSystem => _spellSystem;
 
     public Action<Item, int> OnItemUsed;
-
-    int _usedItemsCount = 0;
 
     private void Start()
     {
@@ -216,7 +214,6 @@ public class InventoryController : MonoBehaviour
             image = icon.GetComponent<Image>();
             image.enabled = false;
         }
-        _usedItemsCount = 0;
     }
 
     private void OnEnable()
