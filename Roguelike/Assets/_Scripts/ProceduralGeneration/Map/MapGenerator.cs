@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MapGenerator : MonoBehaviour
 {
+    [SerializeField] private SaveLoadManager _saveLoadManager;
     public enum DrawMode
     {
         NoiseMap,
@@ -15,44 +16,54 @@ public class MapGenerator : MonoBehaviour
 
     public TerrainData terrainData;
     public NoiseData noiseData;
-    public TextureData textureData;
 
-    public Material terrainMaterial;
+    public EnviromentGenerator enviromentGenerator;
 
-    public const int mapChunkSize = 255;
+    public GameObject meshObject;
 
     public bool autoUpdate;
 
-    float[,] falloffMap;
+    public const int mapChunkSize = 255;
 
-    public GameObject meshObject;
+    MeshData meshData;
+    float[,] falloffMap;
 
 
 
     private void Awake()
     {
-        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize, terrainData.falloffEvaluateA, terrainData.falloffEvaluateB);
-        GenerateMap();
+        if (_saveLoadManager.GetIsNewSession(PlayerPrefs.GetInt("currenntSave")))
+        {
+            _saveLoadManager.SetSeed(PlayerPrefs.GetInt("currenntSave"), Random.Range(0, 2147483647));
+            Debug.Log("Новый сид: " + _saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
+        }
+        else
+        {
+            Debug.Log("Загруженный сид: " + _saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
+        }
+
+        GenerateMap(_saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
 
         meshObject.AddComponent<MeshCollider>();
-    }
 
-    void OnValuesUpdate()
-    {
-        if (!Application.isPlaying)
+        if (_saveLoadManager.GetIsNewSession(PlayerPrefs.GetInt("currenntSave")))
         {
-            GenerateMap();
+            Debug.Log("new");
+            enviromentGenerator.EnviromentGeneration(meshData, mapChunkSize);
         }
+        else
+        {
+            Debug.Log("old");
+            enviromentGenerator.EnviromentLoading(meshData, mapChunkSize);
+        }
+
+        _saveLoadManager.SetIsNewSession(PlayerPrefs.GetInt("currenntSave"), false);
     }
 
-    void OnTextureValuesUpdated()
+    public void GenerateMap(int seed)
     {
-        textureData.ApplyToMaterial(terrainMaterial);
-    }
-
-    public void GenerateMap()
-    {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, noiseData.seed, noiseData.noiseScale, noiseData.octaves, noiseData.persistance, noiseData.lacunarity, noiseData.offset);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, seed, noiseData.noiseScale, noiseData.octaves, noiseData.persistance, noiseData.lacunarity, noiseData.offset);
+        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize, terrainData.falloffEvaluateA, terrainData.falloffEvaluateB);
 
         for (int y = 0; y < mapChunkSize; y++)
         {
@@ -66,36 +77,9 @@ public class MapGenerator : MonoBehaviour
         }
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
-        if (drawMode == DrawMode.NoiseMap)
-        {
-            display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
-        } else if (drawMode == DrawMode.FalloffMap)
-        {
-            display.DrawTexture(TextureGenerator.TextureFromHeightMap(FalloffGenerator.GenerateFalloffMap(mapChunkSize, terrainData.falloffEvaluateA, terrainData.falloffEvaluateB)));
-        } else if (drawMode == DrawMode.Mesh)
-        {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve));
-        }
-    }
-
-    private void OnValidate()
-    {
-        if (terrainData != null)
-        {
-            terrainData.OnValuesUpdated -= OnValuesUpdate;
-            terrainData.OnValuesUpdated += OnValuesUpdate;
-        }
-        if (noiseData != null)
-        {
-            noiseData.OnValuesUpdated -= OnValuesUpdate;
-            noiseData.OnValuesUpdated += OnValuesUpdate;
-        }
-        if (textureData != null)
-        {
-            textureData.OnValuesUpdated -= OnTextureValuesUpdated;
-            textureData.OnValuesUpdated += OnTextureValuesUpdated;
-        }
-
-        falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize, terrainData.falloffEvaluateA, terrainData.falloffEvaluateB);
+        
+        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve));
+        
+        meshData = MeshGenerator.GenerateTerrainMesh(noiseMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve);
     }
 }

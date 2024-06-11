@@ -14,13 +14,13 @@ public class MapGenerationEditor : Editor
         {
             if (mapGen.autoUpdate)
             {
-                mapGen.GenerateMap();
+                mapGen.GenerateMap(Random.Range(0, 2147483647));
             }
         }
 
         if (GUILayout.Button("Generate"))
         {
-            mapGen.GenerateMap();
+            mapGen.GenerateMap(Random.Range(0, 2147483647));
         }
     }
 }
