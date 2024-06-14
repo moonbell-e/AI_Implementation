@@ -95,16 +95,4 @@ public class MovementStateMachineData
                 Debug.LogError($"ArgumentOutOfRangeException: {value}");
         }
     }
-    
-    public float DashCooldown
-    {
-        get => _dashCooldown;
-        set
-        {
-            if (value >= 0)
-                _dashCooldown = value;
-            else
-                Debug.LogError($"ArgumentOutOfRangeException: {value}");
-        }
-    }
 }

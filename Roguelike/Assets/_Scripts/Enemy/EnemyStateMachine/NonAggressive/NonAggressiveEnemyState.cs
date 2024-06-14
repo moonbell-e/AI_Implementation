@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonAggressiveEnemyState
+public class NonAggressiveEnemyState: IEnemyState
 {
     protected readonly NonAggressiveEnemy enemy;
-    protected NonAggressiveStateMachine nonAggressiveEnemyStateMachine;
+    protected readonly EnemyStateMachine nonAggressiveEnemyStateMachine;
 
-    protected NonAggressiveEnemyState(NonAggressiveEnemy enemy, NonAggressiveStateMachine nonAggressiveEnemyStateMachine)
+    protected NonAggressiveEnemyState(NonAggressiveEnemy enemy, EnemyStateMachine nonAggressiveEnemyStateMachine)
     {
         this.enemy = enemy;
         this.nonAggressiveEnemyStateMachine = nonAggressiveEnemyStateMachine;

@@ -4,7 +4,7 @@ public class AggressiveEnemyAttackState : AggressiveEnemyState
 {
     private readonly RobotView _robotView;
     
-    public AggressiveEnemyAttackState(AggressiveEnemy aggressiveEnemy, AggressiveEnemyStateMachine aggressiveEnemyStateMachine) : base(aggressiveEnemy, aggressiveEnemyStateMachine)
+    public AggressiveEnemyAttackState(AggressiveEnemy aggressiveEnemy) : base(aggressiveEnemy)
     {
         if (aggressiveEnemy is Robot robot)
         {

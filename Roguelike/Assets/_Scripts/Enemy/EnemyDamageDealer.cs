@@ -7,7 +7,6 @@ public class EnemyDamageDealer : MonoBehaviour
 
     [SerializeField] private float _weaponLength;
     [SerializeField] private float _weaponDamage;
-    [SerializeField] private Vector3 _raycastDirection;
 
     private void Start()
     {
@@ -24,6 +23,8 @@ public class EnemyDamageDealer : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out var hit, _weaponLength, combinedLayerMask))
         {
+            if (hit.transform == this.transform) return;
+            
             if (hit.transform.TryGetComponent(out PlayerHealthSystem health))
             {
                 health.TakeDamage(_weaponDamage);

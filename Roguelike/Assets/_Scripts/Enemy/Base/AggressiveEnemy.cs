@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
 {
-    public AggressiveEnemyStateMachine StateMachine { get; private set; }
+    public EnemyStateMachine StateMachine { get; private set; }
     public AggressiveEnemyIdleState IdleState { get; private set; }
     public AggressiveEnemyChaseState ChaseState { get; private set; }
     public AggressiveEnemyAttackState AttackState { get; private set; }
@@ -27,11 +27,11 @@ public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
         
         _animator = GetComponent<Animator>();
 
-        StateMachine = new AggressiveEnemyStateMachine();
+        StateMachine = new EnemyStateMachine();
 
-        IdleState = new AggressiveEnemyIdleState(this, StateMachine);
-        ChaseState = new AggressiveEnemyChaseState(this, StateMachine);
-        AttackState = new AggressiveEnemyAttackState(this, StateMachine);
+        IdleState = new AggressiveEnemyIdleState(this);
+        ChaseState = new AggressiveEnemyChaseState(this);
+        AttackState = new AggressiveEnemyAttackState(this);
     }
 
     protected virtual void Start()
@@ -47,12 +47,12 @@ public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
 
     private void Update()
     {
-        StateMachine.CurrentAggressiveEnemyState.FrameUpdate();
+        StateMachine.CurrentEnemyState.FrameUpdate();
     }
 
     private void FixedUpdate()
     {
-        StateMachine.CurrentAggressiveEnemyState.FixedUpdate();
+        StateMachine.CurrentEnemyState.FixedUpdate();
     }
 
     public void TakeDamage(float damageAmount)

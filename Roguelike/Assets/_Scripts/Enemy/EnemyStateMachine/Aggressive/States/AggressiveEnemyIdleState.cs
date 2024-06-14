@@ -10,7 +10,7 @@ public class AggressiveEnemyIdleState : AggressiveEnemyState
     private readonly NavMeshAgent _navMeshAgent;
 
 
-    public AggressiveEnemyIdleState(AggressiveEnemy aggressiveEnemy, AggressiveEnemyStateMachine aggressiveEnemyStateMachine) : base(aggressiveEnemy, aggressiveEnemyStateMachine)
+    public AggressiveEnemyIdleState(AggressiveEnemy aggressiveEnemy) : base(aggressiveEnemy)
     {
         _navMeshAgent = aggressiveEnemy.NavMeshAgent;
 

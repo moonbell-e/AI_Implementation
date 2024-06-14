@@ -17,23 +17,24 @@ public class TargetSensor : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<SphereCollider>();
+        _collider.isTrigger = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PotentialAttacker potentialAttacker))
+        if (other.TryGetComponent(out PotentialAttacker _))
             OnTargetEnter?.Invoke(other.transform);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out PotentialAttacker potentialAttacker))
+        if (other.TryGetComponent(out PotentialAttacker _))
             OnTargetEnter?.Invoke(other.transform);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out PotentialAttacker potentialAttacker))
+        if (other.TryGetComponent(out PotentialAttacker _))
             OnTargetExit?.Invoke(other.transform);
     }
 }
