@@ -1,7 +1,8 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class DamagePopup : MonoBehaviour
+public class DamagePopup: MonoBehaviour
 {
     private TextMeshProUGUI _textMeshPro;
     private float _disappearTimer;
@@ -12,7 +13,7 @@ public class DamagePopup : MonoBehaviour
     
     private void Awake()
     {
-        _textMeshPro = transform.GetComponent<TextMeshProUGUI>();
+        _textMeshPro = transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -25,7 +26,7 @@ public class DamagePopup : MonoBehaviour
     private void MoveObject()
     {
         const float moveYSpeed = 5f;
-        transform.position += _moveVector * Time.deltaTime;
+        _textMeshPro.transform.position += _moveVector * Time.deltaTime;
         _moveVector -= _moveVector * (moveYSpeed * Time.deltaTime);
     }
     
@@ -35,11 +36,11 @@ public class DamagePopup : MonoBehaviour
         const float decreaseScaleAmount = 1f;
         if (_disappearTimer > DisappearTimerMax * 0.5f)
         {
-            transform.localScale += new Vector3(0.1f, 0.1f, 0.1f) * (increaseScaleAmount * Time.deltaTime);
+            _textMeshPro.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f) * (increaseScaleAmount * Time.deltaTime);
         }
         else
         {
-            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f) * (decreaseScaleAmount * Time.deltaTime);
+            _textMeshPro.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f) * (decreaseScaleAmount * Time.deltaTime);
         }
     }
     

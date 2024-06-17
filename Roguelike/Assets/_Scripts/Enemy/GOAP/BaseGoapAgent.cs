@@ -21,6 +21,7 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
 
     [Header("Stats")] 
     [SerializeField] private float _stamina = 100f;
+    [SerializeField] private float _hunger = 100f;
     [field: SerializeField]public float MaxHealth { get; set; }
     
     public float CurrentHealth { get; set; }
@@ -217,7 +218,6 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
     protected void HandleTargetChanged()
     {
         Debug.Log("Target changed, clearing current action and goal");
-        // Force the planner to re-evaluate the plan
         currentAction = null;
         currentGoal = null;
     }
@@ -227,7 +227,6 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
         _statsTimer.Tick(Time.deltaTime);
         animationController.SetSpeed(navMeshAgent.velocity.magnitude);
 
-        // Update the plan and current action if there is one
         if (currentAction == null)
         {
             Debug.Log("Calculating any potential new plan");
@@ -241,7 +240,6 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
                 Debug.Log($"Goal: {currentGoal.Name} with {actionPlan.Actions.Count} actions in plan");
                 currentAction = actionPlan.Actions.Pop();
                 Debug.Log($"Popped action: {currentAction.Name}");
-                // Verify all precondition effects are true
                 if (currentAction.Preconditions.All(b => b.Evaluate()))
                 {
                     currentAction.Start();
@@ -255,7 +253,6 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
             }
         }
 
-        // If we have a current action, execute it
         if (actionPlan != null && currentAction != null)
         {
             currentAction.Update(Time.deltaTime);
@@ -282,7 +279,6 @@ public class BaseGoapAgent : MonoBehaviour, IDamageable
 
         HashSet<AgentGoal> goalsToCheck = goals;
 
-        // If we have a current goal, we only want to check goals with higher priority
         if (currentGoal != null)
         {
             Debug.Log("Current goal exists, checking goals with higher priority");

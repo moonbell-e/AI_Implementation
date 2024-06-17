@@ -4,7 +4,6 @@ using UnityEngine;
 public class DamagePopupGenerator : MonoBehaviour
 {
     [SerializeField] private Transform _damagePopupPrefab;
-    private TextMeshPro _textMeshPro;
 
     public void Create(Vector3 position, int damageAmount, bool isCritical)
     {

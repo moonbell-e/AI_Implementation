@@ -10,7 +10,7 @@ public class AggressiveEnemyChaseState : AggressiveEnemyState
     private float _timePassed;
     
 
-    public AggressiveEnemyChaseState(AggressiveEnemy aggressiveEnemy, AggressiveEnemyStateMachine aggressiveEnemyStateMachine) : base(aggressiveEnemy, aggressiveEnemyStateMachine)
+    public AggressiveEnemyChaseState(AggressiveEnemy aggressiveEnemy) : base(aggressiveEnemy)
     {
         _navMeshAgent = aggressiveEnemy.NavMeshAgent;
         if (aggressiveEnemy is Robot robot)

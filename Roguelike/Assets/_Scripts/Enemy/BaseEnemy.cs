@@ -83,13 +83,6 @@ public class BaseEnemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // private IEnumerator TriggerAnimationAndDie(string animationName)
-    // {
-    //     _animator.SetTrigger(animationName);
-    //     yield return new WaitForSeconds(2f);
-    //     Destroy(gameObject);
-    // }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

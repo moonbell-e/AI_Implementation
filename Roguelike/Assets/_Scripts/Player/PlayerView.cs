@@ -7,7 +7,7 @@ public class PlayerView : MonoBehaviour
     private Animator _animator;
     private PlayerAnimationDataHash _animationsDataHash;
     
-    private List<int> _attackHashes = new List<int>();
+    private readonly List<int> _attackHashes = new();
     
     public void Initialize(PlayerConfig playerConfig)
     {

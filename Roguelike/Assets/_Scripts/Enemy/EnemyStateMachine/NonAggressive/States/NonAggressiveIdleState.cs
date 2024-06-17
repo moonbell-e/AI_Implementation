@@ -10,16 +10,23 @@ public class NonAggressiveIdleState : NonAggressiveEnemyState
     const float MinBtwnMoves = 3.0f;
 
     private readonly NavMeshAgent _navMeshAgent;
+    private readonly NonAggressiveView _view;
 
-    public NonAggressiveIdleState(NonAggressiveEnemy enemy, NonAggressiveStateMachine nonAggressiveEnemyStateMachine) :
+    public NonAggressiveIdleState(NonAggressiveEnemy enemy, EnemyStateMachine nonAggressiveEnemyStateMachine) :
         base(enemy, nonAggressiveEnemyStateMachine)
     {
         _navMeshAgent = enemy.NavMeshAgent;
+        _view = enemy.NonAggressiveView;
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        
+        if (_navMeshAgent.hasPath)
+            _view.StartWalking();
+        else
+            _view.StartIdling();
 
         if (enemy.IsGroup)
         {

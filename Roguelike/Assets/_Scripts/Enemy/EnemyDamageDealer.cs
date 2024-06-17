@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyDamageDealer : MonoBehaviour
@@ -7,7 +8,8 @@ public class EnemyDamageDealer : MonoBehaviour
 
     [SerializeField] private float _weaponLength;
     [SerializeField] private float _weaponDamage;
-    [SerializeField] private Vector3 _raycastDirection;
+    [SerializeField] private SensorTypes _sensorType;
+    
 
     private void Start()
     {
@@ -24,23 +26,11 @@ public class EnemyDamageDealer : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out var hit, _weaponLength, combinedLayerMask))
         {
-            if (hit.transform.TryGetComponent(out PlayerHealthSystem health))
-            {
-                health.TakeDamage(_weaponDamage);
-                _hasDealtDamage = true;
-            }
-            else if (hit.transform.TryGetComponent(out NonAggressiveEnemy enemy))
-            {
-                enemy.TakeDamage(_weaponDamage);
-                _hasDealtDamage = true;
-            }
-            else if (hit.transform.TryGetComponent(out AggressiveEnemy aggressiveEnemy))
-            {
-                aggressiveEnemy.TakeDamage(_weaponDamage);
-                _hasDealtDamage = true;
-            }
+            HitRightEnemy(hit);
         }
     }
+
+
 
     public void StartDealDamage()
     {
@@ -51,6 +41,79 @@ public class EnemyDamageDealer : MonoBehaviour
     public void EndDealDamage()
     {
         _canDealDamage = false;
+    }
+
+    private void HitRightEnemy(RaycastHit hit)
+    {
+        switch (_sensorType)
+        {
+            case SensorTypes.Robot:
+                if (hit.transform.TryGetComponent(out PlayerHealthSystem healthR))
+                {
+                    healthR.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out NonAggressiveEnemy enemyR))
+                {
+                    enemyR.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out PredatorGoapAgent predatorR))
+                {
+                    predatorR.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out PlantEatingGoapAgent plantR))
+                {
+                    plantR.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                break;
+            case SensorTypes.Predator:
+                if (hit.transform.TryGetComponent(out PlayerHealthSystem healthP))
+                {
+                    healthP.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out NonAggressiveEnemy enemyP))
+                {
+                    enemyP.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out Robot robotP))
+                {
+                    robotP.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out PlantEatingGoapAgent plantR))
+                {
+                    plantR.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                break;
+            case SensorTypes.Herbal:
+                if (hit.transform.TryGetComponent(out PlayerHealthSystem healthPl))
+                {
+                    healthPl.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out NonAggressiveEnemy enemyP))
+                {
+                    enemyP.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out Robot robotP))
+                {
+                    robotP.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                else if (hit.transform.TryGetComponent(out PredatorGoapAgent plantR))
+                {
+                    plantR.TakeDamage(_weaponDamage);
+                    _hasDealtDamage = true;
+                }
+                break;
+        }
     }
 
     private void OnDrawGizmos()

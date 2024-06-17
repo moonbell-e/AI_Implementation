@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,16 +7,19 @@ using Random = UnityEngine.Random;
 
 public class NonAggressiveEnemy : MonoBehaviour, IEnemyMovable, IDamageable
 {
+    [SerializeField] private NonAggressiveView _nonAggressiveView;
     public NavMeshAgent NavMeshAgent { get; set; }
     public Vector3 Point { get; set; }
 
-    public NonAggressiveStateMachine StateMachine { get; set; }
+    public EnemyStateMachine StateMachine { get; set; }
 
     public NonAggressiveIdleState IdleState { get; set; }
 
     public NonAggressiveRunState RunState { get; set; }
 
     public event Action OnDamakeTaken;
+
+    public NonAggressiveView NonAggressiveView => _nonAggressiveView;
     
 
     public List<PotentialAttacker> NearByPotentialAttackers = new();
@@ -68,8 +72,9 @@ public class NonAggressiveEnemy : MonoBehaviour, IEnemyMovable, IDamageable
 
     private void Awake()
     {
+        _nonAggressiveView.Initialize();
         NavMeshAgent = GetComponent<NavMeshAgent>();
-        StateMachine = new NonAggressiveStateMachine();
+        StateMachine = new EnemyStateMachine();
         IdleState = new NonAggressiveIdleState(this, StateMachine);
         RunState = new NonAggressiveRunState(this, StateMachine);
     }
@@ -82,12 +87,12 @@ public class NonAggressiveEnemy : MonoBehaviour, IEnemyMovable, IDamageable
 
     private void Update()
     {
-        StateMachine.CurrentNonAggressiveEnemyState.FrameUpdate();
+        StateMachine.CurrentEnemyState.FrameUpdate();
     }
 
     private void FixedUpdate()
     {
-        StateMachine.CurrentNonAggressiveEnemyState.FixedUpdate();
+        StateMachine.CurrentEnemyState.FixedUpdate();
     }
 
     public bool RandomPoint(Vector3 center, float range, out Vector3 result)
@@ -95,7 +100,7 @@ public class NonAggressiveEnemy : MonoBehaviour, IEnemyMovable, IDamageable
         Vector3 randomPoint = center + Random.insideUnitSphere * range;
         NavMeshHit hit;
 
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
         {
             result = hit.position;
             return true;
@@ -107,6 +112,13 @@ public class NonAggressiveEnemy : MonoBehaviour, IEnemyMovable, IDamageable
     
     public void Die()
     {
+        StartCoroutine(DieWithAnim());
+    }
+
+    private IEnumerator DieWithAnim()
+    {
+        _nonAggressiveView.Die();
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
 }

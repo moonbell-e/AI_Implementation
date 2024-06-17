@@ -11,7 +11,6 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] private int _criticalDamageMultiplier = 2;
     [SerializeField] private int _criticalDamageChance = 50;
     [SerializeField] private DamagePopupGenerator _damagePopupGenerator;
-    [SerializeField] private Vector3 _raycastDirection;
 
 
     private void Start()

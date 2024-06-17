@@ -1,16 +1,14 @@
-public class AggressiveEnemyState
+public class AggressiveEnemyState: IEnemyState
 {
     protected readonly AggressiveEnemy aggressiveEnemy;
-    protected AggressiveEnemyStateMachine aggressiveEnemyStateMachine;
 
-    protected AggressiveEnemyState(AggressiveEnemy aggressiveEnemy, AggressiveEnemyStateMachine aggressiveEnemyStateMachine)
+    protected AggressiveEnemyState(AggressiveEnemy aggressiveEnemy)
     {
         this.aggressiveEnemy = aggressiveEnemy;
-        this.aggressiveEnemyStateMachine = aggressiveEnemyStateMachine;
     }
 
-    public void EnterState() {}
-    public void ExitState() {}
+    public virtual void EnterState() {}
+    public virtual void ExitState() {}
     public virtual void FrameUpdate() {}
     public void FixedUpdate() {}
 }

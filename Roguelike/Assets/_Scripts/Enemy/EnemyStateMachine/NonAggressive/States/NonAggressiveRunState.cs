@@ -3,9 +3,11 @@ using UnityEngine;
 public class NonAggressiveRunState : NonAggressiveEnemyState
 {
     private float originalSpeed;
+    private readonly NonAggressiveView _view;
     
-    public NonAggressiveRunState(NonAggressiveEnemy enemy, NonAggressiveStateMachine nonAggressiveEnemyStateMachine) : base(enemy, nonAggressiveEnemyStateMachine)
+    public NonAggressiveRunState(NonAggressiveEnemy enemy, EnemyStateMachine nonAggressiveEnemyStateMachine) : base(enemy, nonAggressiveEnemyStateMachine)
     {
+        _view = enemy.NonAggressiveView;
     }
 
     public override void EnterState()
@@ -16,6 +18,7 @@ public class NonAggressiveRunState : NonAggressiveEnemyState
         originalSpeed = speed;
         speed *= 2;
         enemy.NavMeshAgent.speed = speed;
+        _view.StartRunning();
     }
 
     public override void ExitState()
@@ -23,6 +26,8 @@ public class NonAggressiveRunState : NonAggressiveEnemyState
         base.ExitState();
         
         enemy.NavMeshAgent.speed = originalSpeed;
+        _view.StopPlayback();
+        
     }
 
     public override void FrameUpdate()

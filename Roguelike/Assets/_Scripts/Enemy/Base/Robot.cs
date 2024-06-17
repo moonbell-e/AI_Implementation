@@ -16,8 +16,6 @@ public class Robot : AggressiveEnemy
 
     public override void Die()
     {
-        var loot = Instantiate(_loot, transform.position, Quaternion.identity);
-        loot.name = "Помидорка";
         Destroy(gameObject);
     }
 
