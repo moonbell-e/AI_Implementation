@@ -6,14 +6,14 @@ public class TomatoStatusAbility : StatusAbility
 {
     private TomatoStatusConfig _config;
 
-    private BaseEnemy _enemyObject;
+    private GameObject _enemyObject;
 
     public TomatoStatusAbility(StatusAbilityConfig config)
     {
         _config = (TomatoStatusConfig)config;
     }
 
-    public override void Added(BaseEnemy enemyObject)
+    public override void Added(GameObject enemyObject)
     {
         _enemyObject = enemyObject;
     }
@@ -22,13 +22,6 @@ public class TomatoStatusAbility : StatusAbility
         if (IsActive)
         {
             LifeTime += Time.deltaTime;
-            CheckDelayTimer += Time.deltaTime;
-
-            if (CheckDelayTimer >= DelayTime)
-            {
-                _enemyObject.TakeDamage(DamegeCount);
-                CheckDelayTimer = 0.0f;
-            }
 
             if (LifeTime >= ActionTime)
             {
@@ -38,12 +31,21 @@ public class TomatoStatusAbility : StatusAbility
     }
     public override void StartCast()
     {
+        if (this._enemyObject.TryGetComponent(out IEnemyMovable enemyMovable))
+        {
+            enemyMovable.NavMeshAgent.speed /= 2;
+        }
+
         LifeTime = 0.0f;
         CheckDelayTimer = 0.0f;
         IsActive = true;
     }
     public override void StopCast()
     {
+        if (this._enemyObject.TryGetComponent(out IEnemyMovable enemyMovable))
+        {
+            enemyMovable.NavMeshAgent.speed *= 2;
+        }
         IsActive = false;
     }
 }

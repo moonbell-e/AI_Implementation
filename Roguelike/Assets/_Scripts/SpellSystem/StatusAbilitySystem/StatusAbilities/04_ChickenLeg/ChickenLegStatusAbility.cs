@@ -6,14 +6,14 @@ public class ChickenLegStatusAbility : StatusAbility
 {
     private ChickenLegStatusConfig _config;
 
-    private BaseEnemy _enemyObject;
+    private GameObject _enemyObject;
 
     public ChickenLegStatusAbility(StatusAbilityConfig config)
     {
         _config = (ChickenLegStatusConfig)config;
     }
 
-    public override void Added(BaseEnemy enemyObject)
+    public override void Added(GameObject enemyObject)
     {
         _enemyObject = enemyObject;
     }
@@ -26,7 +26,6 @@ public class ChickenLegStatusAbility : StatusAbility
 
             if (CheckDelayTimer >= DelayTime)
             {
-                _enemyObject.TakeDamage(DamegeCount);
                 CheckDelayTimer = 0.0f;
             }
 

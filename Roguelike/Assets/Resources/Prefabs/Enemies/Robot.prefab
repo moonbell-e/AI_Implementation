@@ -2190,8 +2190,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac9258cf0193264e9cb17e72865c94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statusAbilityConfig: []
-  _enemyObject: {fileID: 0}
+  _statusAbilityConfig:
+  - {fileID: 11400000, guid: 4a7b2705182a70642b0fe7553cd0f2d1, type: 2}
+  - {fileID: 11400000, guid: 04d9568c8b13ffb4da977653743cfb20, type: 2}
+  - {fileID: 11400000, guid: 251b770772717064da19dea7399f56d4, type: 2}
+  - {fileID: 11400000, guid: cc75cf05e5b45db4db77119a433072cd, type: 2}
+  - {fileID: 11400000, guid: a80c7b51cc9ef3247994ee6630ff436f, type: 2}
+  - {fileID: 11400000, guid: 3eee7c1f843d3574094973c8500af8d7, type: 2}
+  _enemyObject: {fileID: 3541754002163558908}
 --- !u!1 &3921334144448749991
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class StatusAbility
         DamegeCount = damageCount;
     }
 
-    public virtual void Added(BaseEnemy EnemyObject) { }
+    public virtual void Added(GameObject EnemyObject) { }
     public virtual void StartCast() { }
     public virtual void StopCast() { }
     public virtual void Update() { }

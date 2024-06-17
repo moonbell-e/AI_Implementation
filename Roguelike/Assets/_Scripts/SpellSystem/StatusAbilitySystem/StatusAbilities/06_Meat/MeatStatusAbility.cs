@@ -6,14 +6,14 @@ public class MeatStatusAbility : StatusAbility
 {
     private MeatStatusConfig _config;
 
-    private BaseEnemy _enemyObject;
+    private GameObject _enemyObject;
 
     public MeatStatusAbility(StatusAbilityConfig config)
     {
         _config = (MeatStatusConfig)config;
     }
 
-    public override void Added(BaseEnemy enemyObject)
+    public override void Added(GameObject enemyObject)
     {
         _enemyObject = enemyObject;
     }
@@ -26,7 +26,6 @@ public class MeatStatusAbility : StatusAbility
 
             if (CheckDelayTimer >= DelayTime)
             {
-                _enemyObject.TakeDamage(DamegeCount);
                 CheckDelayTimer = 0.0f;
             }
 

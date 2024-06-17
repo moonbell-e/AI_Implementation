@@ -6,8 +6,6 @@ public interface IDamageable
 
     void Die();
 
-    void TakeDamageWithoutAnimation(float damageAmount);
-
     float MaxHealth { get; set; }
     float CurrentHealth { get; set; }
     GameObject gameObject { get; }

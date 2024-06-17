@@ -5,7 +5,7 @@ using UnityEngine;
 public class StatusAbilityStorage : MonoBehaviour
 {
     [SerializeField] private StatusAbilityConfig[] _statusAbilityConfig;
-    [SerializeField] private BaseEnemy _enemyObject;
+    [SerializeField] private GameObject _enemyObject;
 
     private List<StatusAbility> _statusAbilities = new();
 

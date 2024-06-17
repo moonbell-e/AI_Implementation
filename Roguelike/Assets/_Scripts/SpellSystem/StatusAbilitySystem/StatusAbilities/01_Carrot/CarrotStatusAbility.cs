@@ -8,14 +8,14 @@ public class CarrotStatusAbility : StatusAbility
 {
     private CarrotStatusConfig _config;
 
-    private BaseEnemy _enemyObject;
+    private GameObject _enemyObject;
 
     public CarrotStatusAbility(StatusAbilityConfig config)
     {
         _config = (CarrotStatusConfig)config;
     }
 
-    public override void Added(BaseEnemy enemyObject)
+    public override void Added(GameObject enemyObject)
     {
         _enemyObject = enemyObject;
     }
@@ -28,7 +28,6 @@ public class CarrotStatusAbility : StatusAbility
 
             if (CheckDelayTimer >= DelayTime) 
             {
-                _enemyObject.TakeDamage(DamegeCount);
                 CheckDelayTimer = 0.0f;
             }
 
