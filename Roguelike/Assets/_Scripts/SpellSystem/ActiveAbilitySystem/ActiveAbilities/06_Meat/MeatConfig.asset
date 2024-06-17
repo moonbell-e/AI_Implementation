@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f2cb87dde83d24996263a0cd6e6c48, type: 3}
+  m_Name: MeatConfig
+  m_EditorClassIdentifier: 
+  <CooldownPoints>k__BackingField: 0
+  <ActionTime>k__BackingField: 5
+  <SpeedCount>k__BackingField: 15
+  <DamegeCount>k__BackingField: 10
+  <MeatSceneSpellPrefab>k__BackingField: {fileID: 6518417894198390918, guid: 1e6734d3800460f46b4864e63ac5ce30, type: 3}

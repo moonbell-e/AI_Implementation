@@ -7,6 +7,7 @@ using TMPro;
 using System.Linq;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using DG.Tweening;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -73,10 +74,33 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button _save4 = null;
     [SerializeField] private Button _backToMenu = null;
 
+    [Header("Save Button Texts")]
+    [SerializeField] private TMP_Text[] _saveTexts = null;
+
+    [Header("Other")]
+    [SerializeField] private CanvasGroup _blackPanel;
+
 
     //Making Player prefs works
-    private void Start()
+    private void Awake()
     {
+        //Looking for saves
+        for (int i = 0; i < _saveTexts.Length; i++)
+        {
+            switch (_saveLoadManager.CheckSaveStatus(i))
+            {
+                case null:
+                    _saveTexts[i].text = "Пустой слот сохранения";
+                    break;
+                case 0:
+                    _saveTexts[i].text = "Локация: Хаб<br><br>Количество завершённых игровых сессий: " + _saveLoadManager.GetSessionCount(i) + "<br><br>Количество золота: " + _saveLoadManager.GetGoldCount(i);
+                    break;
+                case 1:
+                    _saveTexts[i].text = "Локация: Локация 1<br><br>Количество завершённых игровых сессий: " + _saveLoadManager.GetSessionCount(i) + "<br><br>Количество золота: " + _saveLoadManager.GetGoldCount(i);
+                    break;
+            }
+        }
+
         //Looking for resolutions
         _resolutions = Screen.resolutions.ToList();
         _resolutionDropdown.ClearOptions();
@@ -251,6 +275,9 @@ public class MainMenuController : MonoBehaviour
         {
             _verticalSyncToggle.isOn = false;
         }
+
+        if (_blackPanel != null)
+            _blackPanel.DOFade(0f, 3.5f);
     }
 
 
@@ -476,7 +503,7 @@ public class MainMenuController : MonoBehaviour
     //Loading scene
     public IEnumerator Wait(int saveIndex)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         PlayerPrefs.SetInt("currenntSave", saveIndex);
 
@@ -494,11 +521,14 @@ public class MainMenuController : MonoBehaviour
         {
             SceneManager.LoadScene("Location1");
         }
+
         BackToMenu();
     }
 
     public void SaveLoader(int saveIndex)
     {
+        if (_blackPanel != null)
+            _blackPanel.DOFade(1f, 2f);
         StartCoroutine(Wait(saveIndex));
     }
 }

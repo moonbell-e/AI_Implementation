@@ -24,7 +24,6 @@ public static class Noise
 
         float maxNoiseHeight = float.MinValue;
         float minNoiseHeight = float.MaxValue;
-
         float halfChunkSize = mapChunkSize / 2f;
 
         for (int y = 0; y < mapChunkSize; y++)
@@ -67,7 +66,7 @@ public static class Noise
                 noiseMap[x, y] = Mathf.InverseLerp (minNoiseHeight, maxNoiseHeight, noiseMap[x, y]);
             }
         }
-
-                return noiseMap;
+        
+        return noiseMap;
     }
 }

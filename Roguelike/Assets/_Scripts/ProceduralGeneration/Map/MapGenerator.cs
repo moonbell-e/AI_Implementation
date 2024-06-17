@@ -20,6 +20,7 @@ public class MapGenerator : MonoBehaviour
     public EnviromentGenerator enviromentGenerator;
 
     public GameObject meshObject;
+    public MeshFilter meshFilter;
 
     public bool autoUpdate;
 
@@ -35,11 +36,6 @@ public class MapGenerator : MonoBehaviour
         if (_saveLoadManager.GetIsNewSession(PlayerPrefs.GetInt("currenntSave")))
         {
             _saveLoadManager.SetSeed(PlayerPrefs.GetInt("currenntSave"), Random.Range(0, 2147483647));
-            Debug.Log("Новый сид: " + _saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
-        }
-        else
-        {
-            Debug.Log("Загруженный сид: " + _saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
         }
 
         GenerateMap(_saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
@@ -48,12 +44,10 @@ public class MapGenerator : MonoBehaviour
 
         if (_saveLoadManager.GetIsNewSession(PlayerPrefs.GetInt("currenntSave")))
         {
-            Debug.Log("new");
             enviromentGenerator.EnviromentGeneration(meshData, mapChunkSize);
         }
         else
         {
-            Debug.Log("old");
             enviromentGenerator.EnviromentLoading(meshData, mapChunkSize);
         }
 
@@ -75,11 +69,9 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
-        MapDisplay display = FindObjectOfType<MapDisplay>();
-        
-        display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve));
-        
+                
         meshData = MeshGenerator.GenerateTerrainMesh(noiseMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve);
+
+        meshFilter.sharedMesh = meshData.CreateMesh();
     }
 }

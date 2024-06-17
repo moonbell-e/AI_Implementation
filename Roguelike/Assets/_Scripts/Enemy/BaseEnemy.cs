@@ -58,6 +58,16 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
+    public void DamageWithoutStan(float damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0)
+        {
+            Die();
+        }
+    }
+
     public void StartDealDamage()
     {
         GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();

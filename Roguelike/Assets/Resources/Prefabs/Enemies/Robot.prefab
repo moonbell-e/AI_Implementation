@@ -1920,6 +1920,8 @@ GameObject:
   - component: {fileID: 7642976862102208164}
   - component: {fileID: 6458225630886428886}
   - component: {fileID: 8933430041435562050}
+  - component: {fileID: 6575516758557787084}
+  - component: {fileID: 95317153100885916}
   m_Layer: 7
   m_Name: Robot
   m_TagString: Untagged
@@ -2073,7 +2075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340f002bbdbfa654e9956dca9c2251d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 5
+  <MaxHealth>k__BackingField: 100
   <AttackRange>k__BackingField: 3
   <AggroRange>k__BackingField: 6
   <AttackCooldown>k__BackingField: 1
@@ -2115,6 +2117,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c11c78ed6e2b24ba3ea652d393f127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6575516758557787084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541754002163558908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e767496170908418d83dfabc8505f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusAbilityStorage: {fileID: 95317153100885916}
+--- !u!114 &95317153100885916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541754002163558908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac9258cf0193264e9cb17e72865c94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusAbilityConfig: []
+  _enemyObject: {fileID: 0}
 --- !u!1 &3921334144448749991
 GameObject:
   m_ObjectHideFlags: 0

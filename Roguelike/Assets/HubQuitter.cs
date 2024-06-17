@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,9 @@ public class HubQuitter : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+
+        if (_blackPanel != null)
+            _blackPanel.DOFade(0f, 3.5f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,7 +37,7 @@ public class HubQuitter : MonoBehaviour
             player.transform.parent = transform;
 
             if (_blackPanel != null)
-                _blackPanel.DOFade(0.95f, 3f);
+                _blackPanel.DOFade(1f, 3.5f);
 
             DOVirtual.DelayedCall(3f, LoadLocation);
         }

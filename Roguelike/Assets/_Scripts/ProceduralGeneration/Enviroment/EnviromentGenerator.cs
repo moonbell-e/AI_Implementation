@@ -1,6 +1,7 @@
 using PixelCrushers;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -533,7 +534,18 @@ public class EnviromentGenerator : MonoBehaviour
             {
                 if (Random.Range(0, 10000) <= 10)
                 {
-                    //int i = Random.Range(0, 5);
+                    /*int i = Random.Range(1, 3);
+                    if (i == 0)
+                    {
+                        highMap = SpawnBigPointOfInterest01(vertexMap, highMap, x, y, true);
+                    } else if (i == 1)
+                    {
+                        highMap = SpawnBigPointOfInterest02(vertexMap, highMap, x, y, true);
+                    }
+                    else if (i == 2)
+                    {
+                        highMap = SpawnBigPointOfInterest03(vertexMap, highMap, x, y, true);
+                    }*/
                     highMap = SpawnBigPointOfInterest01(vertexMap, highMap, x, y, true);
                 }
             }
@@ -673,7 +685,7 @@ public class EnviromentGenerator : MonoBehaviour
         }
     }
 
-    public void LowBeachGenerator (Vector3 verticy)
+    public void LowBeachGenerator(Vector3 verticy)
     {
         GameObject.Instantiate(lowBeachObjects[Random.Range(0, lowBeachObjects.Length)], verticy, Quaternion.Euler(0, Random.Range(0f, 360f), 0));
     }

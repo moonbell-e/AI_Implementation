@@ -16,6 +16,12 @@ public class Portal : MonoBehaviour
 
     private bool _isStarted = false;
 
+    private void Awake()
+    {
+        if (_blackPanel != null)
+            _blackPanel.DOFade(0f, 3.5f);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Player player) && !_isStarted)
@@ -25,7 +31,7 @@ public class Portal : MonoBehaviour
             player.transform.parent = transform;
 
             if (_blackPanel != null)
-                _blackPanel.DOFade(0.95f, 3f);
+                _blackPanel.DOFade(1f, 3.5f);
 
             DOVirtual.DelayedCall(3f, LoadLocation);
         }
@@ -37,6 +43,7 @@ public class Portal : MonoBehaviour
         _saveLoadManager.ClearSmallPointOfInterest(PlayerPrefs.GetInt("currenntSave"));
 
         _saveLoadManager.AddCurrensy(PlayerPrefs.GetInt("currenntSave"), 0); //заменить на значение голды
+        _saveLoadManager.AddSessionCount(PlayerPrefs.GetInt("currenntSave"));
         _saveLoadManager.SetIsNewSession(PlayerPrefs.GetInt("currenntSave"), false);
 
         SceneManager.LoadScene("HubLocation");

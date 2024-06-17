@@ -50,7 +50,7 @@ public class SaveLoadManager : MonoBehaviour
 
         Save save = new Save();
 
-        save.SaveStartVariables(0, 0, new Location (0, 0), new Location(0, 0), 0);
+        save.SaveStartVariables(0, 0, 0, new Location (0, 0), new Location(0, 0), 0);
 
         bf.Serialize(fs, save);
         fs.Close();
@@ -267,6 +267,36 @@ public class SaveLoadManager : MonoBehaviour
         return startIngredientId;
     }
 
+    public int GetGoldCount(int saveId)
+    {
+        string currentFilePath = filePath + "/save_" + saveId + ".gamesave";
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream fs = new FileStream(currentFilePath, FileMode.Open);
+
+        Save save = (Save)bf.Deserialize(fs);
+
+        int goldCount = save.goldCount;
+
+        fs.Close();
+        return goldCount;
+    }
+
+    public int GetSessionCount(int saveId)
+    {
+        string currentFilePath = filePath + "/save_" + saveId + ".gamesave";
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream fs = new FileStream(currentFilePath, FileMode.Open);
+
+        Save save = (Save)bf.Deserialize(fs);
+
+        int sessionCount = save.sessionCount;
+
+        fs.Close();
+        return sessionCount;
+    }
+
     //Очистка значений
     public void ClearBigPointOfInterest(int saveId)
     {
@@ -322,6 +352,24 @@ public class SaveLoadManager : MonoBehaviour
         bf.Serialize(fs, save);
         fs.Close();
     }
+
+    public void AddSessionCount(int saveId)
+    {
+        string currentFilePath = filePath + "/save_" + saveId + ".gamesave";
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream fs = new FileStream(currentFilePath, FileMode.Open);
+
+        Save save = (Save)bf.Deserialize(fs);
+
+        fs.Close();
+        fs = new FileStream(currentFilePath, FileMode.Create);
+
+        save.sessionCount += 1;
+
+        bf.Serialize(fs, save);
+        fs.Close();
+    }
 }
 
 [System.Serializable]
@@ -368,6 +416,7 @@ public class Save
     public int zoneId;
     public int goldCount;
 
+    public int sessionCount;
     public int sessionGoldCount;
     public bool isNewSession;
 
@@ -379,40 +428,17 @@ public class Save
     public List<POI> pointsOfInterest = new List<POI>();
     public List<SPOI> smallPointsOfInterest = new List<SPOI>();
 
-    public void SaveStartVariables(int sessionGoldCount, int zoneSeed, Location bossLocation, Location playerLocation, int startIngredientId)
+    public void SaveStartVariables(int sessionCount, int sessionGoldCount, int seed, Location bossLocation, Location playerLocation, int startIngredientId)
     {
+        this.sessionCount = sessionCount;
         this.sessionGoldCount = sessionGoldCount;
 
-        this.seed = zoneSeed;
+        this.seed = seed;
         this.bossLocation.x = bossLocation.x;
         this.bossLocation.y = bossLocation.y;
         this.playerLocation.x = playerLocation.x;
         this.playerLocation.y = playerLocation.y;
         this.startIngredientId = startIngredientId;
-    }
-
-    public void SavePointsOfInterest(List<PointOfInterest> AddedPointsOfInterest)
-    {
-        foreach (PointOfInterest addedPoint in AddedPointsOfInterest)
-        {
-            POI point;
-            point.location.x = addedPoint.location.x;
-            point.location.y = addedPoint.location.y;
-            point.id = addedPoint.id;
-            pointsOfInterest.Add(point);
-        }
-    }
-
-    public void SaveSmallPointsOfInterest(List<SmallPointOfInterest> AddedSmallPointsOfInterests)
-    {
-        foreach (SmallPointOfInterest addedPoint in AddedSmallPointsOfInterests)
-        {
-            SPOI point;
-            point.location.x = addedPoint.location.x;
-            point.location.y = addedPoint.location.y;
-            point.id = addedPoint.id;
-            smallPointsOfInterest.Add(point);
-        }
     }
 }
 
