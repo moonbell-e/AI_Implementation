@@ -6,14 +6,14 @@ public class PepperStatusAbility : StatusAbility
 {
     private PepperStatusConfig _config;
 
-    private BaseEnemy _enemyObject;
+    private GameObject _enemyObject;
 
     public PepperStatusAbility(StatusAbilityConfig config)
     {
         _config = (PepperStatusConfig)config;
     }
 
-    public override void Added(BaseEnemy enemyObject)
+    public override void Added(GameObject enemyObject)
     {
         _enemyObject = enemyObject;
     }
@@ -26,7 +26,10 @@ public class PepperStatusAbility : StatusAbility
 
             if (CheckDelayTimer >= DelayTime)
             {
-                _enemyObject.DamageWithoutStan(DamegeCount);
+                if (_enemyObject.TryGetComponent(out IDamageable idamageable))
+                {
+                    idamageable.TakeDamage(DamegeCount);
+                }
                 CheckDelayTimer = 0.0f;
             }
 

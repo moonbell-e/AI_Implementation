@@ -17,7 +17,7 @@ public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
     [field: SerializeField] public float AttackRange { get; set; } = 1f;
     [field: SerializeField] public float AggroRange { get; set; } = 4f;
     [field: SerializeField] public float AttackCooldown { get; set; } = 2f;
-    public float CurrentHealth { get; set; }
+    [field: SerializeField] public float CurrentHealth { get; set; }
 
     protected virtual void Awake()
     {
