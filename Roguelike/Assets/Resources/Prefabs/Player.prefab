@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 6454073002286568098}
   - component: {fileID: 4375897614011352649}
   - component: {fileID: 6497285303703439530}
-  - component: {fileID: 3293565866669347141}
+  - component: {fileID: 2816501233334691634}
   - component: {fileID: 3062128516876491028}
   - component: {fileID: 896638780023082826}
   - component: {fileID: 1968778464873260818}
@@ -203,8 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bf4ea18718358409bae91e45bec550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerView: {fileID: 6497285303703439530}
+  _inputReaderSwitcher: {fileID: 0}
   _playerInputReader: {fileID: 0}
+  _cookingInputReader: {fileID: 0}
+  _inventoryInputReader: {fileID: 0}
+  _playerView: {fileID: 6497285303703439530}
   _playerConfig: {fileID: 11400000, guid: 2db67f4b80483c842a9309c433b7a68a, type: 2}
   _knifeGo: {fileID: 6821737308352342443}
   _trailRenderer: {fileID: 5679616482656597025}
@@ -220,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cfb452894dbce4588c32bc04a054d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3293565866669347141
+--- !u!114 &2816501233334691634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,10 +232,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 779802844837867386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd6500f883a5354da0cf826043271dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 20efde4e6bc083041b178bcae4f00006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 30
+  _health: 0
+  _maxHealth: 30
+  _slider: {fileID: 0}
+  _cameraShake: {fileID: 0}
 --- !u!114 &3062128516876491028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,7 +1408,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.5
+  m_Time: 1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -1412,7 +1418,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.51428795
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1433,9 +1439,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 0.42377183, b: 0.0056602955, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0.5803922}
+      key1: {r: 1, g: 1, b: 1, a: 0.5803922}
+      key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1451,7 +1457,7 @@ TrailRenderer:
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0

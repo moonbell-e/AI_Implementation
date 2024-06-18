@@ -35,18 +35,23 @@ public class Player : MonoBehaviour
         _playerView.Initialize(_playerConfig);
         _rb = GetComponent<Rigidbody>();
         _stateMachine = new PlayerStateMachine(this);
-        _trailRenderer.emitting = false;
+        //_trailRenderer.emitting = false;
+        _trailRenderer.time = 0;
     }
 
     private void FixedUpdate()
     {
         _stateMachine.HandleInput();
         _stateMachine.Update();
+        if (_trailRenderer.time > 0)
+        {
+            _trailRenderer.time -= 0.02f;
+        }
     }
 
-    public void SetDashMode(bool value)
+    public void StartDash()
     {
-        _trailRenderer.emitting = value;
+        _trailRenderer.time = 1;
     }
 
     public void StartDealDamage()

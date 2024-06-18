@@ -33,7 +33,7 @@ public class TomatoStatusAbility : StatusAbility
     {
         if (this._enemyObject.TryGetComponent(out IEnemyMovable enemyMovable))
         {
-            enemyMovable.NavMeshAgent.speed /= 2;
+            enemyMovable.NavMeshAgent.speed /= _config.SpeedModofier;
         }
 
         LifeTime = 0.0f;
@@ -44,7 +44,7 @@ public class TomatoStatusAbility : StatusAbility
     {
         if (this._enemyObject.TryGetComponent(out IEnemyMovable enemyMovable))
         {
-            enemyMovable.NavMeshAgent.speed *= 2;
+            enemyMovable.NavMeshAgent.speed *= _config.SpeedModofier;
         }
         IsActive = false;
     }

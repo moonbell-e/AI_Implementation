@@ -25,14 +25,13 @@ public class DashingState : StaticState
         _dashTimer = _data.DashDuration;
         
         _player.View.StartDashing();
-        _player.SetDashMode(true);
+        _player.StartDash();
     }
 
     public override void Exit()
     {
         base.Exit();
         _player.Rb.velocity = Vector3.zero;
-        _player.SetDashMode(false);
     }
     
     public override void Update()

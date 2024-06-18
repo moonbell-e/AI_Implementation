@@ -57,7 +57,7 @@ public class AggressiveEnemy : MonoBehaviour, IDamageable, IEnemyMovable
 
     public void TakeDamage(float damageAmount)
     {
-        //_animator.SetTrigger("TakeDamage");
+        _animator.SetTrigger("TakeDamage");
         CurrentHealth -= damageAmount;
 
         if (CurrentHealth <= 0f)
