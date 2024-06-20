@@ -319,7 +319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100031548
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2517,10 +2517,10 @@ RectTransform:
   - {fileID: 1679123533}
   m_Father: {fileID: 1828603397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.89453, y: -241.16083}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599467228
 MonoBehaviour:
@@ -4172,10 +4172,10 @@ RectTransform:
   - {fileID: 248455757}
   m_Father: {fileID: 1833760902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.89453, y: -541.1608}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866944507
 MonoBehaviour:
@@ -5506,10 +5506,10 @@ RectTransform:
   - {fileID: 1552983991}
   m_Father: {fileID: 1833760902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.89453, y: -241.16083}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138378003
 MonoBehaviour:
@@ -6002,10 +6002,10 @@ RectTransform:
   - {fileID: 1847867419}
   m_Father: {fileID: 1828603397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 152.89453, y: -541.1608}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1220673850
 MonoBehaviour:
@@ -11220,6 +11220,10 @@ PrefabInstance:
     - target: {fileID: 779802844837867386, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3062128516876491028, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
+      propertyPath: useDefaultGUI
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4375897614011352649, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
       propertyPath: _playerInputReader

@@ -94,7 +94,7 @@ public class EnviromentGenerator : MonoBehaviour
         SpawnOfEnvoroment(vertexMap, highMap, mapChunkSize);
     }
 
-    //Делаю стартовые вычисления
+    //Р”РµР»Р°СЋ СЃС‚Р°СЂС‚РѕРІС‹Рµ РІС‹С‡РёСЃР»РµРЅРёСЏ
     public Vector3[,] MakeVertexMap(MeshData meshData, int mapChunkSize)
     {
         Vector3[,] vertexMap = new Vector3[mapChunkSize, mapChunkSize];
@@ -131,7 +131,7 @@ public class EnviromentGenerator : MonoBehaviour
         return highMap;
     }
 
-    //Спавн игрока
+    //РЎРїР°РІРЅ РёРіСЂРѕРєР°
     public bool[,] FindPlayer(Vector3[,] vertexMap, bool[,] highMap, int mapChunkSize)
     {
         bool isPlacable = true;
@@ -257,7 +257,7 @@ public class EnviromentGenerator : MonoBehaviour
         if (!highMap[x, y + distance]) { playerProps[1].transform.position = new Vector3(vertexMap[x - distance, y].x, 13.5f, vertexMap[x, y + distance].z); }
     }
 
-    //Спавн босса
+    //РЎРїР°РІРЅ Р±РѕСЃСЃР°
 
     public bool[,] FindBoss(Vector3[,] vertexMap, bool[,] highMap, int mapChunkSize)
     {
@@ -539,7 +539,7 @@ public class EnviromentGenerator : MonoBehaviour
         }
     }
 
-    //Спавн точек интереса
+    //РЎРїР°РІРЅ С‚РѕС‡РµРє РёРЅС‚РµСЂРµСЃР°
 
     public bool[,] FindBigPointOfInterest(Vector3[,] vertexMap, bool[,] highMap, int mapChunkSize)
     {
@@ -746,7 +746,7 @@ public class EnviromentGenerator : MonoBehaviour
         return highMap;
     }
 
-    //Спавн окружения
+    //РЎРїР°РІРЅ РѕРєСЂСѓР¶РµРЅРёСЏ
 
     public void SpawnOfEnvoroment(Vector3[,] vertexMap, bool[,] highMap, int mapChunkSize)
     {
