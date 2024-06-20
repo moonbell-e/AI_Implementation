@@ -17,8 +17,8 @@ public class StatusAbilityHandler : MonoBehaviour
     public void OnSpellHit(int statusId1, int statusId2, int statusId3)
     {
         _statusAbilities[statusId1].StartCast();
-        //_statusAbilities[statusId2].StartCast();
-        //_statusAbilities[statusId3].StartCast();
+        _statusAbilities[statusId2].StartCast();
+        _statusAbilities[statusId3].StartCast();
     }
 
     private void Update()

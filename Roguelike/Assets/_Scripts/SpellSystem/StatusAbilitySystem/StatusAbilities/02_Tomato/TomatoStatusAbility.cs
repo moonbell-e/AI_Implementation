@@ -36,6 +36,8 @@ public class TomatoStatusAbility : StatusAbility
             enemyMovable.NavMeshAgent.speed /= _config.SpeedModofier;
         }
 
+        GameObject.Instantiate(_config.VFX, _enemyObject.transform.position, _enemyObject.transform.rotation, _enemyObject.transform).Init(ActionTime);
+
         LifeTime = 0.0f;
         CheckDelayTimer = 0.0f;
         IsActive = true;

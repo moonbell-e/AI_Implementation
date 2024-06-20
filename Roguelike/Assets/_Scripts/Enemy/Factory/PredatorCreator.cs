@@ -11,7 +11,7 @@ public class PredatorCreator : Creator
 
         for (int i = 0; i < amountToSpawn; i++)
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/Enemies/Predator");
+            var prefab = Resources.Load<GameObject>("Prefabs/Enemies/PredatorChest");
 
             Vector3 spawnPosition = positionToSpawn + new Vector3(
                 Random.Range(-spawnRange, spawnRange),
