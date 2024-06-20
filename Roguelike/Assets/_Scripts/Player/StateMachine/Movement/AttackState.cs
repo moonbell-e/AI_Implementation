@@ -14,7 +14,7 @@ public class AttackState : StaticState
     {
         _player.SetAttackMode(true);
         _player.View.StartAttacking();
-        _attackTimer = 1f;
+        _attackTimer = 0.5f;
     }
 
     public override void Exit()

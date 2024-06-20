@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,8 @@ public class MapGenerator : MonoBehaviour
     MeshData meshData;
     float[,] falloffMap;
 
+    private NavMeshSurface _navMeshSurface;
+
 
 
     private void Awake()
@@ -41,7 +44,7 @@ public class MapGenerator : MonoBehaviour
         GenerateMap(_saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
 
         meshObject.AddComponent<MeshCollider>();
-
+        
         if (_saveLoadManager.GetIsNewSession(PlayerPrefs.GetInt("currenntSave")))
         {
             enviromentGenerator.EnviromentGeneration(meshData, mapChunkSize);
@@ -50,6 +53,8 @@ public class MapGenerator : MonoBehaviour
         {
             enviromentGenerator.EnviromentLoading(meshData, mapChunkSize);
         }
+        
+        meshObject.GetComponent<NavMeshSurface>().BuildNavMesh();
 
         _saveLoadManager.SetIsNewSession(PlayerPrefs.GetInt("currenntSave"), false);
     }
@@ -71,7 +76,7 @@ public class MapGenerator : MonoBehaviour
         }
                 
         meshData = MeshGenerator.GenerateTerrainMesh(noiseMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve);
-
+        
         meshFilter.sharedMesh = meshData.CreateMesh();
     }
 }
