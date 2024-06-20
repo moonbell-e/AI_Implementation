@@ -50,7 +50,7 @@ public class SaveLoadManager : MonoBehaviour
 
         Save save = new Save();
 
-        save.SaveStartVariables(0, 0, 0, new Location (0, 0), new Location(0, 0), 0);
+        save.SaveStartVariables(0, 0, new Location (0, 0), new Location(0, 0), 0);
 
         bf.Serialize(fs, save);
         fs.Close();
@@ -75,7 +75,7 @@ public class SaveLoadManager : MonoBehaviour
         fs.Close();
     }
 
-    public void SetCurrensy(int saveId, int goldCount)
+    public void SetCurrensy(int saveId, int goldCount, int crystalCount)
     {
         string currentFilePath = filePath + "/save_" + saveId + ".gamesave";
 
@@ -88,6 +88,7 @@ public class SaveLoadManager : MonoBehaviour
         fs = new FileStream(currentFilePath, FileMode.Create);
 
         save.goldCount = goldCount;
+        save.crystalCount = crystalCount;
 
         bf.Serialize(fs, save);
         fs.Close();
@@ -282,6 +283,21 @@ public class SaveLoadManager : MonoBehaviour
         return goldCount;
     }
 
+    public int GetCrystalCount(int saveId)
+    {
+        string currentFilePath = filePath + "/save_" + saveId + ".gamesave";
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream fs = new FileStream(currentFilePath, FileMode.Open);
+
+        Save save = (Save)bf.Deserialize(fs);
+
+        int crystalCount = save.crystalCount;
+
+        fs.Close();
+        return crystalCount;
+    }
+
     public int GetSessionCount(int saveId)
     {
         string currentFilePath = filePath + "/save_" + saveId + ".gamesave";
@@ -335,7 +351,7 @@ public class SaveLoadManager : MonoBehaviour
     }
 
     //Прибавление
-    public void AddCurrensy(int saveId, int goldCount)
+    public void AddCurrensy(int saveId, int goldCount, int crystalCount)
     {
         string currentFilePath = filePath + "/save_" + saveId + ".gamesave";
 
@@ -348,6 +364,7 @@ public class SaveLoadManager : MonoBehaviour
         fs = new FileStream(currentFilePath, FileMode.Create);
 
         save.goldCount += goldCount;
+        save.crystalCount += crystalCount;
 
         bf.Serialize(fs, save);
         fs.Close();
@@ -415,9 +432,9 @@ public class Save
 
     public int zoneId;
     public int goldCount;
+    public int crystalCount;
 
     public int sessionCount;
-    public int sessionGoldCount;
     public bool isNewSession;
 
     public int seed;
@@ -428,10 +445,9 @@ public class Save
     public List<POI> pointsOfInterest = new List<POI>();
     public List<SPOI> smallPointsOfInterest = new List<SPOI>();
 
-    public void SaveStartVariables(int sessionCount, int sessionGoldCount, int seed, Location bossLocation, Location playerLocation, int startIngredientId)
+    public void SaveStartVariables(int sessionCount, int seed, Location bossLocation, Location playerLocation, int startIngredientId)
     {
         this.sessionCount = sessionCount;
-        this.sessionGoldCount = sessionGoldCount;
 
         this.seed = seed;
         this.bossLocation.x = bossLocation.x;

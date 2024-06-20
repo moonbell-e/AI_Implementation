@@ -45,7 +45,7 @@ public class HubQuitter : MonoBehaviour
 
     private void LoadLocation()
     {
-        _saveLoadManager.SetCurrensy(PlayerPrefs.GetInt("currenntSave"), 0); //заменить на значение голды
+        _saveLoadManager.SetCurrensy(PlayerPrefs.GetInt("currenntSave"), 0, 0); //заменить на значение голды и кристаллов
         _saveLoadManager.SetIsNewSession(PlayerPrefs.GetInt("currenntSave"), true);
 
         SceneManager.LoadScene("Location1");

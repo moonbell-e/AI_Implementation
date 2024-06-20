@@ -42,7 +42,7 @@ public class Portal : MonoBehaviour
         _saveLoadManager.ClearBigPointOfInterest(PlayerPrefs.GetInt("currenntSave"));
         _saveLoadManager.ClearSmallPointOfInterest(PlayerPrefs.GetInt("currenntSave"));
 
-        _saveLoadManager.AddCurrensy(PlayerPrefs.GetInt("currenntSave"), 0); //заменить на значение голды
+        _saveLoadManager.AddCurrensy(PlayerPrefs.GetInt("currenntSave"), 0, 0); //заменить на значение голды и кристаллов
         _saveLoadManager.AddSessionCount(PlayerPrefs.GetInt("currenntSave"));
         _saveLoadManager.SetIsNewSession(PlayerPrefs.GetInt("currenntSave"), false);
 
