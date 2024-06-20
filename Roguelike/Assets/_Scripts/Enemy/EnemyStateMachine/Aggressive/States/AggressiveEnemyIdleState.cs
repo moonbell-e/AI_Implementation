@@ -34,30 +34,27 @@ public class AggressiveEnemyIdleState : AggressiveEnemyState
             if (distanceToTarget < closestDistance)
             {
                 closestDistance = distanceToTarget;
-                closestTarget = target;
             }
         }
 
-        if (closestTarget != null)
-        {
-            if (closestDistance <= aggressiveEnemy.AggroRange)
-            {
-                aggressiveEnemy.StateMachine.SwitchState(aggressiveEnemy.ChaseState);
-            }
-            else
-            {
-                _robotView.Walk();
 
-                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+        if (closestDistance <= aggressiveEnemy.AggroRange)
+        {
+            aggressiveEnemy.StateMachine.SwitchState(aggressiveEnemy.ChaseState);
+        }
+        else
+        {
+            _robotView.Walk();
+
+            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+            {
+                if (RandomPoint(aggressiveEnemy.transform.position, Range, out var point))
                 {
-                    if (RandomPoint(aggressiveEnemy.transform.position, Range, out var point))
-                    {
-                        aggressiveEnemy.NavMeshAgent.SetDestination(point);
-                    }
+                    aggressiveEnemy.NavMeshAgent.SetDestination(point);
                 }
             }
         }
-    } 
+    }
 
     private bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {

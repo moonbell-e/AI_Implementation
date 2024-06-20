@@ -2191,7 +2191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _statusAbilityConfig:
-  - {fileID: 11400000, guid: 4a7b2705182a70642b0fe7553cd0f2d1, type: 2}
+  - {fileID: 11400000, guid: 04d9568c8b13ffb4da977653743cfb20, type: 2}
   - {fileID: 11400000, guid: 04d9568c8b13ffb4da977653743cfb20, type: 2}
   - {fileID: 11400000, guid: 251b770772717064da19dea7399f56d4, type: 2}
   - {fileID: 11400000, guid: cc75cf05e5b45db4db77119a433072cd, type: 2}

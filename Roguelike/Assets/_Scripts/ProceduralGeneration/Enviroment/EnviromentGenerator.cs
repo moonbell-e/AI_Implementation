@@ -65,13 +65,16 @@ public class EnviromentGenerator : MonoBehaviour
         }
         foreach (SPOI item in save.smallPointsOfInterest)
         {
-            switch (item.id)
+            switch (save.smallPointsOfInterest.IndexOf(item) % 3)
             {
                 case 0:
                     SpawnSmallPointOfInterest01(vertexMap, highMap, item.location.x, item.location.y, false);
                     break;
                 case 1:
                     SpawnSmallPointOfInterest02(vertexMap, highMap, item.location.x, item.location.y, false);
+                    break;
+                case 2:
+                    SpawnSmallPointOfInterest03(vertexMap, highMap, item.location.x, item.location.y, false);
                     break;
             }
         }
@@ -652,6 +655,9 @@ public class EnviromentGenerator : MonoBehaviour
                         case 1:
                             highMap = SpawnSmallPointOfInterest02(vertexMap, highMap, x, y, true);
                             break;
+                        case 2:
+                            highMap = SpawnSmallPointOfInterest03(vertexMap, highMap, x, y, true);
+                            break;
                     }
                 }
             }
@@ -697,7 +703,7 @@ public class EnviromentGenerator : MonoBehaviour
         GameObject restingPosition = GameObject.Instantiate(smallPointOfInterestProps[2], vertexMap[x - 1, y - 2], Quaternion.identity);
 
         GameObject.Instantiate(smallPointOfInterestProps[3], vertexMap[x - 2, y + 1], Quaternion.identity);
-
+        
         _proceduralEnemyFactory.CreateAggressiveHerbals(3, vertexMap[x, y], 5, restingPosition.transform, foodPosition.transform);
 
         return highMap;
@@ -745,6 +751,59 @@ public class EnviromentGenerator : MonoBehaviour
 
         return highMap;
     }
+    
+    public bool[,] SpawnSmallPointOfInterest03(Vector3[,] vertexMap, bool[,] highMap, int x, int y, bool isNew)
+    {
+        if (isNew)
+        {
+            for (int xMod = -2; xMod <= 2; xMod++)
+            {
+                for (int yMod = -2; yMod <= 2; yMod++)
+                {
+                    if (x + xMod < 0 || y + yMod < 0 || x + xMod >= 255 || y + yMod >= 255)
+                    {
+                        return highMap;
+                    }
+                    if (!highMap[x + xMod, y + yMod])
+                    {
+                        return highMap;
+                    }
+                }
+            }
+        }
+
+        if (isNew)
+        {
+            _saveLoadManager.SetSmallPointOfInterest(PlayerPrefs.GetInt("currenntSave"), 1, x, y);
+        }
+
+        for (int xMod = -3; xMod <= 3; xMod++)
+        {
+            for (int yMod = -3; yMod <= 3; yMod++)
+            {
+                highMap[x + xMod, y + yMod] = false;
+            }
+        }
+
+        GameObject.Instantiate(smallPointOfInterestProps[3], vertexMap[x - 2, y + 1], Quaternion.identity);
+
+        
+        switch (Random.Range(0,3))
+        {
+            case 0:
+                _proceduralEnemyFactory.CreateCacti(8, -vertexMap[x, y], 5);
+                break;  
+            case 1:
+                _proceduralEnemyFactory.CreateBurrows(8, vertexMap[x, y], 2);
+                break;  
+            case 2:
+                _proceduralEnemyFactory.CreateMushrooms(8, vertexMap[x, y], 4);
+                break;
+        }
+
+        return highMap;
+    }
+
 
     //Спавн окружения
 
