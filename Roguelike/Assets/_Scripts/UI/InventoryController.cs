@@ -219,7 +219,6 @@ public class InventoryController : MonoBehaviour
     private void OnEnable()
     {
         PlayerInputReader.OnInventoryTriggered += InventoryOpen;
-        PlayerInputReader.OnSpellTriggered += SpellUsed;
 
         CookingInputReader.OnIngredient1Triggered += ItemUsed;
         CookingInputReader.OnIngredient2Triggered += ItemUsed;
@@ -237,12 +236,12 @@ public class InventoryController : MonoBehaviour
         SpellSystem.OnFirstItemAdded += FirstItemAdd;
         SpellSystem.OnFirstItemRemoved += FirstItemRemove;
         SpellSystem.OnFull += ItemFull;
+        SpellSystem.OnSpellCastedInv += SpellUsed;
     }
 
     private void OnDisable()
     {
         PlayerInputReader.OnInventoryTriggered -= InventoryOpen;
-        PlayerInputReader.OnSpellTriggered -= SpellUsed;
 
         CookingInputReader.OnIngredient1Triggered -= ItemUsed;
         CookingInputReader.OnIngredient2Triggered -= ItemUsed;
@@ -260,5 +259,6 @@ public class InventoryController : MonoBehaviour
         SpellSystem.OnFirstItemAdded -= FirstItemAdd;
         SpellSystem.OnFirstItemRemoved -= FirstItemRemove;
         SpellSystem.OnFull -= ItemFull;
+        SpellSystem.OnSpellCastedInv -= SpellUsed;
     }
 }

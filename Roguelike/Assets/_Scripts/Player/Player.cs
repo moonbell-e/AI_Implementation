@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         _stateMachine.Update();
         if (_trailRenderer.time > 0)
         {
-            _trailRenderer.time -= 0.02f;
+            _trailRenderer.time -= 0.025f;
         }
     }
 

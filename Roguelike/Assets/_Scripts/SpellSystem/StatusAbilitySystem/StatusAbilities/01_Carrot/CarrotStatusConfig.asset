@@ -15,3 +15,4 @@ MonoBehaviour:
   <ActionTime>k__BackingField: 5
   <DelayTime>k__BackingField: 1
   <DamegeCount>k__BackingField: 3
+  <VFX>k__BackingField: {fileID: 109997150726677405, guid: 42dab57243bc9a0439d0ab922e1b1f9a, type: 3}

@@ -11,11 +11,13 @@ public class EnviromentGenerator : MonoBehaviour
 {
     [Header("Managers")]
     [SerializeField] private SaveLoadManager _saveLoadManager;
+    [SerializeField] private ProceduralEnemyFactory _proceduralEnemyFactory;
 
     [Header("Prefabs")]
     public GameObject[] playerProps;
     public GameObject[] bossProps;
-    public GameObject[] PointOfInterestProps;
+    public GameObject[] smallPointOfInterestProps;
+    public GameObject[] bigPointOfInterestProps;
     public GameObject[] foods;
     public GameObject[] lowBeachObjects;
     public GameObject[] highBeachObjects;
@@ -63,7 +65,15 @@ public class EnviromentGenerator : MonoBehaviour
         }
         foreach (SPOI item in save.smallPointsOfInterest)
         {
-            SpawnSmallPointOfInterest01(vertexMap, highMap, item.location.x, item.location.y, false);
+            switch (item.id)
+            {
+                case 0:
+                    SpawnSmallPointOfInterest01(vertexMap, highMap, item.location.x, item.location.y, false);
+                    break;
+                case 1:
+                    SpawnSmallPointOfInterest02(vertexMap, highMap, item.location.x, item.location.y, false);
+                    break;
+            }
         }
 
         for (int xMod = -playerZoneSize; xMod <= playerZoneSize; xMod++)
@@ -281,9 +291,9 @@ public class EnviromentGenerator : MonoBehaviour
 
                 if (isPlacable)
                 {
-                    for (int xMod = -bossZoneSize; xMod <= bossZoneSize; xMod++)
+                    for (int xMod = -bossZoneSize - 1; xMod <= bossZoneSize + 1; xMod++)
                     {
-                        for (int yMod = -bossZoneSize; yMod <= bossZoneSize; yMod++)
+                        for (int yMod = -bossZoneSize - 1; yMod <= bossZoneSize + 1; yMod++)
                         {
                             highMap[x + xMod, y + yMod] = false;
                         }
@@ -329,9 +339,9 @@ public class EnviromentGenerator : MonoBehaviour
 
                 if (isPlacable)
                 {
-                    for (int xMod = -bossZoneSize; xMod <= bossZoneSize; xMod++)
+                    for (int xMod = -bossZoneSize - 1; xMod <= bossZoneSize + 1; xMod++)
                     {
-                        for (int yMod = -bossZoneSize; yMod <= bossZoneSize; yMod++)
+                        for (int yMod = -bossZoneSize - 1; yMod <= bossZoneSize + 1; yMod++)
                         {
                             highMap[x + xMod, y + yMod] = false;
                         }
@@ -377,9 +387,9 @@ public class EnviromentGenerator : MonoBehaviour
 
                 if (isPlacable)
                 {
-                    for (int xMod = -bossZoneSize; xMod <= bossZoneSize; xMod++)
+                    for (int xMod = -bossZoneSize - 1; xMod <= bossZoneSize + 1; xMod++)
                     {
-                        for (int yMod = -bossZoneSize; yMod <= bossZoneSize; yMod++)
+                        for (int yMod = -bossZoneSize - 1; yMod <= bossZoneSize + 1; yMod++)
                         {
                             highMap[x + xMod, y + yMod] = false;
                         }
@@ -425,9 +435,9 @@ public class EnviromentGenerator : MonoBehaviour
 
                 if (isPlacable)
                 {
-                    for (int xMod = -bossZoneSize; xMod <= bossZoneSize; xMod++)
+                    for (int xMod = -bossZoneSize - 1; xMod <= bossZoneSize + 1; xMod++)
                     {
-                        for (int yMod = -bossZoneSize; yMod <= bossZoneSize; yMod++)
+                        for (int yMod = -bossZoneSize - 1; yMod <= bossZoneSize + 1; yMod++)
                         {
                             highMap[x + xMod, y + yMod] = false;
                         }
@@ -450,9 +460,17 @@ public class EnviromentGenerator : MonoBehaviour
 
     public void SpawnBoss(Vector3[,] vertexMap, bool[,] highMap, int x, int y)
     {
-        GameObject.Instantiate(bossProps[0], vertexMap[x, y], Quaternion.identity);
+        GameObject.Instantiate(bossProps[0], vertexMap[x, y] + new Vector3 (0, 10, 0), Quaternion.identity);
 
         bossProps[6].transform.position = vertexMap[x - 3, y];
+
+        GameObject.Instantiate(bossProps[7], vertexMap[x + bossZoneSize / 2, y + bossZoneSize / 2], Quaternion.identity);
+        GameObject.Instantiate(bossProps[7], vertexMap[x + bossZoneSize / 2, y - bossZoneSize / 2], Quaternion.identity);
+        GameObject.Instantiate(bossProps[7], vertexMap[x - bossZoneSize / 2, y + bossZoneSize / 2], Quaternion.identity);
+        GameObject.Instantiate(bossProps[7], vertexMap[x - bossZoneSize / 2, y - bossZoneSize / 2], Quaternion.identity);
+
+        GameObject.Instantiate(bossProps[8], vertexMap[x, y], Quaternion.identity);
+
 
         bool isPillar = true;
 
@@ -555,9 +573,9 @@ public class EnviromentGenerator : MonoBehaviour
     {
         if (isNew)
         {
-            for (int xMod = -5; xMod <= 5; xMod++)
+            for (int xMod = -4; xMod <= 4; xMod++)
             {
-                for (int yMod = -5; yMod <= 5; yMod++)
+                for (int yMod = -4; yMod <= 4; yMod++)
                 {
                     if (x + xMod < 0 || y + yMod < 0 || x + xMod >= 255 || y + yMod >= 255)
                     {
@@ -581,9 +599,39 @@ public class EnviromentGenerator : MonoBehaviour
             for (int yMod = -5; yMod <= 5; yMod++)
             {
                 highMap[x + xMod, y + yMod] = false;
-                GameObject.Instantiate(PointOfInterestProps[0], vertexMap[x + xMod, y + yMod], Quaternion.identity);
             }
         }
+
+        for (int i = -3; i <= 3; i++)
+        {
+            GameObject.Instantiate(bigPointOfInterestProps[0], vertexMap[x + 4, y + i], Quaternion.identity);
+        }
+
+        GameObject.Instantiate(bigPointOfInterestProps[1], vertexMap[x + 4, y - 4], Quaternion.identity);
+        GameObject.Instantiate(bigPointOfInterestProps[1], vertexMap[x + 4, y + 4], Quaternion.identity);
+        GameObject.Instantiate(bigPointOfInterestProps[1], vertexMap[x, y - 4], Quaternion.identity);
+        GameObject.Instantiate(bigPointOfInterestProps[1], vertexMap[x, y + 4], Quaternion.identity);
+        GameObject.Instantiate(bigPointOfInterestProps[0], vertexMap[x + 3, y + 4], Quaternion.Euler(0, 90, 0));
+        GameObject.Instantiate(bigPointOfInterestProps[0], vertexMap[x + 2, y + 4], Quaternion.Euler(0, 90, 0));
+        GameObject.Instantiate(bigPointOfInterestProps[0], vertexMap[x + 1, y + 4], Quaternion.Euler(0, 90, 0));
+        GameObject.Instantiate(bigPointOfInterestProps[0], vertexMap[x, y - 3], Quaternion.identity);
+        GameObject.Instantiate(bigPointOfInterestProps[0], vertexMap[x, y - 2], Quaternion.identity);
+        GameObject.Instantiate(bigPointOfInterestProps[0], vertexMap[x, y - 1], Quaternion.identity);
+
+        GameObject.Instantiate(bigPointOfInterestProps[Random.Range(2, 5)], vertexMap[x - 1, y - 4], Quaternion.Euler(0, 90, 0));
+        GameObject.Instantiate(bigPointOfInterestProps[Random.Range(2, 5)], vertexMap[x - 2, y - 4], Quaternion.Euler(0, 90, 0));
+        GameObject.Instantiate(bigPointOfInterestProps[Random.Range(2, 5)], vertexMap[x - 3, y - 4], Quaternion.Euler(0, 90, 0));
+        for (int i = -3; i <= 3; i++)
+        {
+            GameObject.Instantiate(bigPointOfInterestProps[Random.Range(2, 5)], vertexMap[x - 4, y - i], Quaternion.Euler(0, 180, 0));
+        }
+
+        GameObject.Instantiate(bigPointOfInterestProps[5], vertexMap[x, y], Quaternion.identity);
+
+        GameObject.Instantiate(bigPointOfInterestProps[6], vertexMap[x - 2, y - 2], Quaternion.identity);
+        GameObject.Instantiate(foods[Random.Range(0, foods.Length)], vertexMap[x - 2, y - 2] + new Vector3(0, 1, 0), Quaternion.identity);
+
+        _proceduralEnemyFactory.CreateRobots(Random.Range(2, 5), vertexMap[x, y], 5);
 
         return highMap;
     }
@@ -596,8 +644,15 @@ public class EnviromentGenerator : MonoBehaviour
             {
                 if (Random.Range(0, 10000) <= 8)
                 {
-                    //int i = Random.Range(0, 5);
-                    highMap = SpawnSmallPointOfInterest01(vertexMap, highMap, x, y, true);
+                    switch (Random.Range(0, 2))
+                    {
+                        case 0:
+                            highMap = SpawnSmallPointOfInterest01(vertexMap, highMap, x, y, true);
+                            break;
+                        case 1:
+                            highMap = SpawnSmallPointOfInterest02(vertexMap, highMap, x, y, true);
+                            break;
+                    }
                 }
             }
         }
@@ -630,14 +685,63 @@ public class EnviromentGenerator : MonoBehaviour
             _saveLoadManager.SetSmallPointOfInterest(PlayerPrefs.GetInt("currenntSave"), 0, x, y);
         }
 
-        for (int xMod = -2; xMod <= 2; xMod++)
+        for (int xMod = -3; xMod <= 3; xMod++)
         {
-            for (int yMod = -2; yMod <= 2; yMod++)
+            for (int yMod = -3; yMod <= 3; yMod++)
             {
                 highMap[x + xMod, y + yMod] = false;
-                GameObject.Instantiate(PointOfInterestProps[0], vertexMap[x + xMod, y + yMod], Quaternion.identity);
             }
         }
+        
+        GameObject foodPosition = GameObject.Instantiate(smallPointOfInterestProps[0], vertexMap[x + 2, y + 2], Quaternion.identity);
+        GameObject restingPosition = GameObject.Instantiate(smallPointOfInterestProps[2], vertexMap[x - 1, y - 2], Quaternion.identity);
+
+        GameObject.Instantiate(smallPointOfInterestProps[3], vertexMap[x - 2, y + 1], Quaternion.identity);
+
+        _proceduralEnemyFactory.CreateAggressiveHerbals(3, vertexMap[x, y], 5, restingPosition.transform, foodPosition.transform);
+
+        return highMap;
+    }
+
+    public bool[,] SpawnSmallPointOfInterest02(Vector3[,] vertexMap, bool[,] highMap, int x, int y, bool isNew)
+    {
+        if (isNew)
+        {
+            for (int xMod = -2; xMod <= 2; xMod++)
+            {
+                for (int yMod = -2; yMod <= 2; yMod++)
+                {
+                    if (x + xMod < 0 || y + yMod < 0 || x + xMod >= 255 || y + yMod >= 255)
+                    {
+                        return highMap;
+                    }
+                    if (!highMap[x + xMod, y + yMod])
+                    {
+                        return highMap;
+                    }
+                }
+            }
+        }
+
+        if (isNew)
+        {
+            _saveLoadManager.SetSmallPointOfInterest(PlayerPrefs.GetInt("currenntSave"), 1, x, y);
+        }
+
+        for (int xMod = -3; xMod <= 3; xMod++)
+        {
+            for (int yMod = -3; yMod <= 3; yMod++)
+            {
+                highMap[x + xMod, y + yMod] = false;
+            }
+        }
+
+        GameObject foodPosition = GameObject.Instantiate(smallPointOfInterestProps[1], vertexMap[x + 2, y + 2], Quaternion.identity);
+        GameObject restingPosition = GameObject.Instantiate(smallPointOfInterestProps[2], vertexMap[x - 1, y - 2], Quaternion.identity);
+
+        GameObject.Instantiate(smallPointOfInterestProps[3], vertexMap[x - 2, y + 1], Quaternion.identity);
+
+        _proceduralEnemyFactory.CreatePredators(3, vertexMap[x, y], 5, restingPosition.transform, foodPosition.transform);
 
         return highMap;
     }

@@ -19,6 +19,7 @@ public class SpellManager : MonoBehaviour
     public Action<int> OnFull;
 
     public Action<int, int, int> OnSpellCasted;
+    public Action OnSpellCastedInv;
 
     List<Item> usedItems;
     List<int> usedItemsInventoryId;
@@ -75,6 +76,7 @@ public class SpellManager : MonoBehaviour
         if (usedItems.Count == 3)
         {
             OnSpellCasted.Invoke(usedItems[0]._id - 1, usedItems[1]._id - 1, usedItems[2]._id - 1);
+            OnSpellCastedInv.Invoke();
             usedItems.RemoveAt(0);
             usedItems.RemoveAt(0);
             usedItems.RemoveAt(0);

@@ -15,4 +15,5 @@ MonoBehaviour:
   <ActionTime>k__BackingField: 5
   <DelayTime>k__BackingField: 1
   <DamegeCount>k__BackingField: 3
+  <VFX>k__BackingField: {fileID: 109997150726677405, guid: 41b05bb2de9d2c54eba2217826b8afa7, type: 3}
   <SpeedModofier>k__BackingField: 2

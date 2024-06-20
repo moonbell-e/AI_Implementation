@@ -10,4 +10,9 @@ public class VFXDestruction : MonoBehaviour
     {
         Destroy(gameObject, _lifeTime);
     }
+
+    public void Init(float lifeTime)
+    {
+        _lifeTime = lifeTime;
+    }
 }

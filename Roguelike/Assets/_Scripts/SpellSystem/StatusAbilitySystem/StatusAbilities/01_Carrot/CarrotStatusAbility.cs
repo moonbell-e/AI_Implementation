@@ -42,6 +42,8 @@ public class CarrotStatusAbility : StatusAbility
         LifeTime = 0.0f;
         CheckDelayTimer = 0.0f;
         IsActive = true;
+
+        GameObject.Instantiate(_config.VFX, _enemyObject.transform.position, _enemyObject.transform.rotation, _enemyObject.transform).Init(ActionTime);
     }
     public override void StopCast()
     {
