@@ -644,6 +644,8 @@ GameObject:
   - component: {fileID: 1302712410652126009}
   - component: {fileID: 5985208165373416174}
   - component: {fileID: 4084384426249871793}
+  - component: {fileID: 2528698002164665751}
+  - component: {fileID: 5790264484800189208}
   m_Layer: 7
   m_Name: PredatorChest
   m_TagString: Untagged
@@ -796,7 +798,7 @@ MonoBehaviour:
   _foodPosition: {fileID: 0}
   _stamina: 100
   _hunger: 100
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 60
   _isDefending: 0
   _isAttacked: 0
   _chaseSensor: {fileID: 7012256309366944857}
@@ -825,6 +827,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb7b408aa96ee4890f4483c1ad6a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2528698002164665751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872118183075349454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e767496170908418d83dfabc8505f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusAbilityStorage: {fileID: 5790264484800189208}
+--- !u!114 &5790264484800189208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872118183075349454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac9258cf0193264e9cb17e72865c94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusAbilityConfig:
+  - {fileID: 11400000, guid: 4a7b2705182a70642b0fe7553cd0f2d1, type: 2}
+  - {fileID: 11400000, guid: 04d9568c8b13ffb4da977653743cfb20, type: 2}
+  - {fileID: 11400000, guid: 251b770772717064da19dea7399f56d4, type: 2}
+  - {fileID: 11400000, guid: cc75cf05e5b45db4db77119a433072cd, type: 2}
+  - {fileID: 11400000, guid: a80c7b51cc9ef3247994ee6630ff436f, type: 2}
+  - {fileID: 11400000, guid: 3eee7c1f843d3574094973c8500af8d7, type: 2}
+  _enemyObject: {fileID: 5872118183075349454}
 --- !u!1 &6154442737246865701
 GameObject:
   m_ObjectHideFlags: 0
