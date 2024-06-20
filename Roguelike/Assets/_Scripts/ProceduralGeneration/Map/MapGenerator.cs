@@ -44,7 +44,9 @@ public class MapGenerator : MonoBehaviour
         GenerateMap(_saveLoadManager.GetSeed(PlayerPrefs.GetInt("currenntSave")));
 
         meshObject.AddComponent<MeshCollider>();
-        
+
+        meshObject.GetComponent<NavMeshSurface>().BuildNavMesh();
+
         if (_saveLoadManager.GetIsNewSession(PlayerPrefs.GetInt("currenntSave")))
         {
             enviromentGenerator.EnviromentGeneration(meshData, mapChunkSize);
@@ -53,8 +55,6 @@ public class MapGenerator : MonoBehaviour
         {
             enviromentGenerator.EnviromentLoading(meshData, mapChunkSize);
         }
-        
-        meshObject.GetComponent<NavMeshSurface>().BuildNavMesh();
 
         _saveLoadManager.SetIsNewSession(PlayerPrefs.GetInt("currenntSave"), false);
     }

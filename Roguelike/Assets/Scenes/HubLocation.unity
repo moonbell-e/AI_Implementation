@@ -1228,6 +1228,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &360496454 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2863259466913796218, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
+  m_PrefabInstance: {fileID: 932584425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &369461836 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 150ba11dd01b4424181fe89bbac97410, type: 3}
@@ -3270,37 +3275,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6fe3784b6fa1f4841a127220269aaf6f, type: 3}
   m_PrefabInstance: {fileID: 667756048}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &804088422
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 804088423}
-  m_Layer: 6
-  m_Name: SpellSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &804088423
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804088422}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.38, z: 0.866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 932584428}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &852570951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3498,10 +3472,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3293565866669347141, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6159615028339436862, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 804088423}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 779802844837867386, guid: 976ed6b0fe6998e48a43bb44d3aa03e2, type: 3}
       insertIndex: 5
@@ -3596,7 +3567,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b74d138e68d134d4b8573d8b38790e66, type: 2}
   - {fileID: 11400000, guid: 5423f3b50b27eb848b9157844ab923d8, type: 2}
   _owner: {fileID: 932584433}
-  _spellPosition: {fileID: 804088423}
+  _spellPosition: {fileID: 360496454}
 --- !u!114 &932584432
 MonoBehaviour:
   m_ObjectHideFlags: 0
