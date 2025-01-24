@@ -1,2 +1,2 @@
-# Project-B
-The game of the year
+# Perfect Taste
+This project is an honours thesis for the university. The genre of the project is roguelike and the main topic of the project is cookery. In it, I am implementing artificial intelligence using GOAP and FSM patterns and building an ecosystem of agents.
